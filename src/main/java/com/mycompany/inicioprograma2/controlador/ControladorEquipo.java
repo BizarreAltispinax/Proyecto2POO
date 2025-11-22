@@ -16,6 +16,11 @@ import java.util.List;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import javax.swing.*;
 
 public class ControladorEquipo {
@@ -257,6 +262,7 @@ public class ControladorEquipo {
                 sb.append(e.toString()); 
             }
         }
+        generarPDF("Reporte_Equipo.pdf", sb.toString());
         
     }
     
@@ -272,6 +278,7 @@ public class ControladorEquipo {
                 
             }
         }
+        generarPDF("Reporte_Equipo.pdf", sb.toString());
         
     }
     
@@ -281,11 +288,28 @@ public class ControladorEquipo {
             sb.append(e.toString()); 
             imprimirRecursivo(e, sb, 0);
         }
+        generarPDF("Reporte_Equipo.pdf", sb.toString());
         
     }
     
 
-    
+   private void generarPDF(String nombreArchivo, String contenido) {
+    Document document = new Document();
+
+    try {
+        PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
+        document.open();
+
+        // Agregar contenido del StringBuilder como párrafo
+        document.add(new Paragraph(contenido));
+
+        document.close();
+        System.out.println("PDF generado: " + nombreArchivo);
+
+    } catch (DocumentException | IOException e) {
+        e.printStackTrace();
+    }
+}
     
     
     private void imprimirRecursivo(Equipos padre, StringBuilder sb, int nivel) {
