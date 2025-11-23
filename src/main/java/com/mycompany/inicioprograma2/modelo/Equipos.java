@@ -28,7 +28,7 @@ public class Equipos implements Serializable {
     private String especificaciones;
     private String garantia;
 
-    private int equipoPadre;   // ⭐ Nuevo campo
+    private int equipoPadre;   // Nuevo campo
 
     public enum EstadoEquipo {
         FUNCIONANDO,
@@ -60,38 +60,116 @@ public class Equipos implements Serializable {
         this.equipoPadre = equipoPadre;
     }
 
-    public int getId() { return id; }
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
-    public String getUbicacion() { return ubicacion; }
-    public void setUbicacion(String ubicacion) { this.ubicacion = ubicacion; }
-    public String getFabricante() { return fabricante; }
-    public void setFabricante(String fabricante) { this.fabricante = fabricante; }
-    public String getSerie() { return serie; }
-    public void setSerie(String serie) { this.serie = serie; }
-    public LocalDate getFechaAdquisicion() { return fechaAdquisicion; }
-    public void setFechaAdquisicion(LocalDate fechaAdquisicion) { this.fechaAdquisicion = fechaAdquisicion; }
-    public LocalDate getFechaPuestaServicio() { return fechaPuestaServicio; }
-    public void setFechaPuestaServicio(LocalDate fechaPuestaServicio) { this.fechaPuestaServicio = fechaPuestaServicio; }
-    public int getMesesVidaUtil() { return mesesVidaUtil; }
-    public void setMesesVidaUtil(int mesesVidaUtil) { this.mesesVidaUtil = mesesVidaUtil; }
-    public EstadoEquipo getEstado() { return estado; }
-    public void setEstado(EstadoEquipo estado) { this.estado = estado; }
-    public double getCostoInicial() { return costoInicial; }
-    public void setCostoInicial(double costoInicial) { this.costoInicial = costoInicial; }
-    public String getEspecificaciones() { return especificaciones; }
-    public void setEspecificaciones(String especificaciones) { this.especificaciones = especificaciones; }
-    public String getGarantia() { return garantia; }
-    public void setGarantia(String garantia) { this.garantia = garantia; }
+    public int getId() {
+        return id;
+    }
 
-    public int getEquipoPadre() { return equipoPadre; }
-    public void setEquipoPadre(int equipoPadre) { this.equipoPadre = equipoPadre; }
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public LocalDate getFechaAdquisicion() {
+        return fechaAdquisicion;
+    }
+
+    public void setFechaAdquisicion(LocalDate fechaAdquisicion) {
+        this.fechaAdquisicion = fechaAdquisicion;
+    }
+
+    public LocalDate getFechaPuestaServicio() {
+        return fechaPuestaServicio;
+    }
+
+    public void setFechaPuestaServicio(LocalDate fechaPuestaServicio) {
+        this.fechaPuestaServicio = fechaPuestaServicio;
+    }
+
+    public int getMesesVidaUtil() {
+        return mesesVidaUtil;
+    }
+
+    public void setMesesVidaUtil(int mesesVidaUtil) {
+        this.mesesVidaUtil = mesesVidaUtil;
+    }
+
+    public EstadoEquipo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoEquipo estado) {
+        this.estado = estado;
+    }
+
+    public double getCostoInicial() {
+        return costoInicial;
+    }
+
+    public void setCostoInicial(double costoInicial) {
+        this.costoInicial = costoInicial;
+    }
+
+    public String getEspecificaciones() {
+        return especificaciones;
+    }
+
+    public void setEspecificaciones(String especificaciones) {
+        this.especificaciones = especificaciones;
+    }
+
+    public String getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(String garantia) {
+        this.garantia = garantia;
+    }
+
+    public int getEquipoPadre() {
+        return equipoPadre;
+    }
+
+    public void setEquipoPadre(int equipoPadre) {
+        this.equipoPadre = equipoPadre;
+    }
 
     @Override
     public String toString() {
-
     return "ID: " + id + "\n" +
            "Descripción: " + descripcion + "\n" +
            "Tipo: " + tipo + "\n" +

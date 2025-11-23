@@ -9,6 +9,11 @@ package com.mycompany.inicioprograma2.vista;
  * @author Usuario
  */
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaConsultarEquipo;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaCrearEquipo;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaEliminarEquipo;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaModificarEquipo;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.inicioprograma2.vista;
+package com.mycompany.inicioprograma2.vista.equipos;
 
 /**
  *
  * @author Usuario
  */
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
-import com.mycompany.inicioprograma2.modelo.Equipos;
 
 import javax.swing.*;
 import java.awt.*;
