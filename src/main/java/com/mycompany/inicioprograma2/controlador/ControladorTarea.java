@@ -1,6 +1,6 @@
 package com.mycompany.inicioprograma2.controlador;
 
-import com.mycompany.inicioprograma2.modelo.tareas.Tarea;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ControladorTarea {
         return null;
     }
 
-    public boolean agregarTarea(int id, String descripcion) {
+    public boolean agregarTarea(String descripcion) {
         if (descripcion == null || descripcion.isBlank()) return false;
 
         Tarea nueva = new Tarea(descripcion);

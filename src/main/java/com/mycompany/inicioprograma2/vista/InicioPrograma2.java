@@ -3,6 +3,10 @@
  */
 
 package com.mycompany.inicioprograma2.vista;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
+import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalMantenimiento;
+import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.*;
+
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -13,10 +17,10 @@ public class InicioPrograma2 extends JFrame {
 
     public InicioPrograma2() {
         setTitle("Menú Principal");
-        setSize(300, 200);
+        setSize(700, 200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(1, 1));
+        setLayout(new GridLayout(2, 1));
 
         JButton btnEquipos = new JButton("Equipos");
         add(btnEquipos);
@@ -24,13 +28,20 @@ public class InicioPrograma2 extends JFrame {
         JButton btnReportes = new JButton("Reportes");
         add(btnReportes);
 
+        JButton btnMantePreventivo = new JButton("Programas de Mantenimiento");
+        add(btnMantePreventivo);
+
         btnEquipos.addActionListener(e -> {
-            new VentanaPrincipal().setVisible(true);
-            this.dispose();   // ⭐ Opción B
+            new VentanaPrincipalEquipos().setVisible(true);
+            this.dispose();   //Opcion A
         });
         btnReportes.addActionListener(e -> {
             new Reportes().setVisible(true);
-            this.dispose();   // ⭐ Opción B
+            this.dispose();   //Opcion B
+        });
+        btnMantePreventivo.addActionListener(e -> {
+            new VentanaPrincipalMantenimiento().setVisible(true);
+            this.dispose();   //Opcion C
         });
     }
 

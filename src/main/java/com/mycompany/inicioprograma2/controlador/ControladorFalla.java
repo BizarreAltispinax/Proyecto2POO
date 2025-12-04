@@ -1,6 +1,6 @@
 package com.mycompany.inicioprograma2.controlador;
 
-import com.mycompany.inicioprograma2.modelo.fallas.Falla;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas.Falla;
 import javax.swing.*;
 import java.util.ArrayList;
 

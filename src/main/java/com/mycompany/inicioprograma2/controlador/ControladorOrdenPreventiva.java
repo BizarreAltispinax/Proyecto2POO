@@ -1,10 +1,9 @@
 package com.mycompany.inicioprograma2.controlador;
 
-import com.mycompany.inicioprograma2.modelo.ordenes.preventivo.EstadoOrden;
-import com.mycompany.inicioprograma2.modelo.ordenes.preventivo.HistorialFallas;
-import com.mycompany.inicioprograma2.modelo.ordenes.preventivo.OrdenTrabajoPreventivo;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.EstadoOrden;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.HistorialFallas;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.OrdenTrabajoPreventivo;
 
-import java.lang.classfile.attribute.InnerClassesAttribute;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
