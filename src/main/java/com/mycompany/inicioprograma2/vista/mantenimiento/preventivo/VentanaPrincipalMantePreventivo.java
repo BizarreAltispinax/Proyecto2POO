@@ -23,17 +23,22 @@ public class VentanaPrincipalMantePreventivo extends JFrame {
         JButton btnOrdenes = new JButton("Órdenes");
         add(btnOrdenes);
 
+        JButton btnProgramas = new JButton("Lista de Programas Preventivos");
+        add(btnProgramas);
+
         btnFases.addActionListener(e -> {
             new VentanaPrincipalFases().setVisible(true);
-            this.dispose();   //Opcion A
         });
         btnTareas.addActionListener(e -> {
             new VentanaPrincipalTareas().setVisible(true);
-            this.dispose();   //Opcion B
         });
 //        btnOrdenes.addActionListener(e -> {
 //            new VentanaPrincipalOrdenes().setVisible(true);
 //            this.dispose();   //Opcion C
+//        });
+//        btnProgramas.addActionListener(e -> {
+//            new VentanaPrincipalOrdenes().setVisible(true);
+//            this.dispose();   //Opcion D
 //        });
     }
 }

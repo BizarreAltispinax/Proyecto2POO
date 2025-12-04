@@ -25,7 +25,7 @@ public class VentanaPrincipalTareas extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(2, 2));
 
         JButton btnCrear = new JButton("Crear Tarea");
         JButton btnLista = new JButton("Lista de Tareas");
