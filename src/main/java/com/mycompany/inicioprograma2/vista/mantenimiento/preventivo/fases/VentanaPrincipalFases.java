@@ -31,19 +31,13 @@ public class VentanaPrincipalFases extends JFrame {
         JButton btnCrear = new JButton("Crear Fase");
         JButton btnAsignar = new JButton("Asignar Tareas a Fase");
         JButton btnConsultar = new JButton("Consultar Fases");
-        JButton btnModificar = new JButton("Modificar Fase");
-        JButton btnEliminar = new JButton("Eliminar Fase");
 
         add(btnCrear);
         add(btnAsignar);
         add(btnConsultar);
-        add(btnModificar);
-        add(btnEliminar);
 
         btnCrear.addActionListener(e -> new VentanaCrearFase(controlador).setVisible(true));
         btnAsignar.addActionListener(e -> new VentanaAsignarTareasFase(controlador, controlador2).setVisible(true));
-        //btnConsultar.addActionListener(e -> new VentanaListaFases(controlador).setVisible(true));
-        //btnModificar.addActionListener(e -> new VentanaModificarFase(controlador).setVisible(true));
-        //btnEliminar.addActionListener(e -> new VentanaEliminarFase(controlador).setVisible(true));
+        btnConsultar.addActionListener(e -> new VentanaListaFases(controlador).setVisible(true));
     }
 }
