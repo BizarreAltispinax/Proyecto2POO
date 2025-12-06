@@ -9,7 +9,7 @@ package com.mycompany.inicioprograma2.vista;
  * @author Usuario
  */
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
-import com.mycompany.inicioprograma2.vista.equipos.VentanaCrearEquipo;
+import com.mycompany.inicioprograma2.vista.equipos.ReportesEquipos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +18,8 @@ public class Reportes extends JFrame {
 
     private ControladorEquipo controlador;
 
-    public Reportes() {
-        controlador = new ControladorEquipo();
+    public Reportes(ControladorEquipo ctlEquipos, InicioPrograma2 prin) {
+     
 
         setTitle("Gestión de Equipos");
         setSize(400, 300);
@@ -28,12 +28,15 @@ public class Reportes extends JFrame {
         setLayout(new GridLayout(4, 1));
 
         JButton btnEquipos = new JButton("Equipos");
-
+        JButton btnSalir = new JButton("Salir");
 
         add(btnEquipos);
+        add(btnSalir);
 
-
-        btnEquipos.addActionListener(e -> new VentanaCrearEquipo(controlador).setVisible(true));
-
+        btnEquipos.addActionListener(e -> new ReportesEquipos(ctlEquipos).setVisible(true));
+        btnSalir.addActionListener(e -> {
+        this.dispose();
+        prin.setVisible(true);
+        });
     }
 }

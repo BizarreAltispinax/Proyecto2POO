@@ -1,5 +1,6 @@
 package com.mycompany.inicioprograma2.controlador;
 
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ public class ControladorTarea {
     private final ArrayList<Tarea> tareas;
 
     public ControladorTarea() {
-        tareas = new ArrayList<>();
+        tareas = Persistencia.cargar("tareas.dat");
     }
 
     public ArrayList<Tarea> getTareas() {
@@ -22,7 +23,9 @@ public class ControladorTarea {
         }
         return null;
     }
-
+    public void guardar() {
+        Persistencia.guardar("tareas.dat", tareas);
+    }
     public boolean agregarTarea(String descripcion) {
         if (descripcion == null || descripcion.isBlank()) return false;
 

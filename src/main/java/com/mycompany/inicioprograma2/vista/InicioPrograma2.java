@@ -4,9 +4,10 @@
 
 package com.mycompany.inicioprograma2.vista;
 import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
+import com.mycompany.inicioprograma2.vista.equipos.ConultaArbol;
 import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalMantenimiento;
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.*;
-
+import com.mycompany.inicioprograma2.controlador.*;
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -15,7 +16,7 @@ import java.awt.*;
  */
 public class InicioPrograma2 extends JFrame {
 
-    public InicioPrograma2() {
+    public InicioPrograma2(ControladorEquipo ctlEquipos,ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
         setTitle("Menú Principal");
         setSize(700, 200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,22 +31,45 @@ public class InicioPrograma2 extends JFrame {
 
         JButton btnMantePreventivo = new JButton("Programas de Mantenimiento");
         add(btnMantePreventivo);
+        
+        JButton btnConsultarArbol = new JButton("Consultar en estilo Arbol");
+        add(btnConsultarArbol);
+        
 
         btnEquipos.addActionListener(e -> {
-            new VentanaPrincipalEquipos().setVisible(true);
-            this.dispose();   //Opcion A
+            new VentanaPrincipalEquipos(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);//Opcion A
         });
         btnReportes.addActionListener(e -> {
-            new Reportes().setVisible(true);
-            this.dispose();   //Opcion B
+            new Reportes(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion B
         });
         btnMantePreventivo.addActionListener(e -> {
-            new VentanaPrincipalMantenimiento().setVisible(true);
-            this.dispose();   //Opcion C
+            new VentanaPrincipalMantenimiento(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlPP,ctlTarea,this).setVisible(true);
+            this.setVisible(false);  //Opcion C
+        });
+        
+        btnConsultarArbol.addActionListener(e -> {
+            new ConultaArbol(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion C
         });
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new InicioPrograma2().setVisible(true));
+        ControladorEquipo ctlEquipos = new ControladorEquipo();
+        ControladorFalla ctlPersonas = new ControladorFalla();
+        ControladorMatenimientoPreventivo ctlUsuarios = new ControladorMatenimientoPreventivo();
+        ControladorOrdenPreventiva ctlProductos = new ControladorOrdenPreventiva();
+        ControladorProgramasPreventivos ctlPedidos = new ControladorProgramasPreventivos(ctlEquipos);
+        ControladorTarea ctlPedido = new ControladorTarea();
+        SwingUtilities.invokeLater(() -> new InicioPrograma2(ctlEquipos,ctlPersonas,ctlUsuarios,ctlProductos,ctlPedidos,ctlPedido).setVisible(true));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            ctlEquipos.guardar();
+            ctlPersonas.guardar();
+            ctlUsuarios.guardar();
+            ctlProductos.guardar();
+            ctlPedidos.guardar();
+            ctlPedido.guardar();
+        }));
     }
 }

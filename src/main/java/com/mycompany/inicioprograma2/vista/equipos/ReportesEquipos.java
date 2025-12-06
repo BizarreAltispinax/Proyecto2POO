@@ -16,8 +16,8 @@ public class ReportesEquipos extends JFrame {
 
     private ControladorEquipo controlador;
 
-    public ReportesEquipos() {
-        controlador = new ControladorEquipo();
+    public ReportesEquipos(ControladorEquipo controlador) {
+        
 
         setTitle("Gestión de Equipos");
         setSize(400, 300);

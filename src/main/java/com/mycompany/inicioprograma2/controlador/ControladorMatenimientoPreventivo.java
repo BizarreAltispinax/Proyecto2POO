@@ -4,19 +4,26 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.Fase;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.ProgramaMantenimientoPreventivo;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.TipoFrecuencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
-
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 import java.util.List;
 
 public class ControladorMatenimientoPreventivo {
 
-    private final ProgramaMantenimientoPreventivo programa;
+    private ProgramaMantenimientoPreventivo programa;
 
     public ControladorMatenimientoPreventivo() {
-        this.programa = new ProgramaMantenimientoPreventivo();
+        this.programa = Persistencia.cargar2("mantenimientoPreventivo.dat");
+
+        if (this.programa == null) {
+            this.programa = new ProgramaMantenimientoPreventivo();
+        }
     }
 
     public List<Fase> getFases() {
         return programa.getFases();
+    }
+    public void guardar() {
+        Persistencia.guardar2("mantenimientoPreventivo.dat", programa);
     }
 
     public boolean crearFase(TipoFrecuencia tipoFrecuencia, int medidorFrecuencia, int cantidadCiclos, String partes, String herramientas, String personal, float horasEstimadas) {

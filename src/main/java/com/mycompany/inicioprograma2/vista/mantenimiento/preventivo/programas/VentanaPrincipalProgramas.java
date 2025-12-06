@@ -13,6 +13,7 @@ import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
 import com.mycompany.inicioprograma2.controlador.ControladorProgramasPreventivos;
 import com.mycompany.inicioprograma2.controlador.ControladorTarea;
 import com.mycompany.inicioprograma2.modelo.Equipos;
+import com.mycompany.inicioprograma2.vista.InicioPrograma2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,9 +24,9 @@ public class VentanaPrincipalProgramas extends JFrame {
     private final ControladorTarea ctrlTareas;
 
     private JComboBox<Equipos> comboEquipos;
-    private JButton btnCrearFase, btnAsignar, btnConsultar;
+    private JButton btnCrearFase, btnAsignar, btnConsultar , btnSalir;
 
-    public VentanaPrincipalProgramas(ControladorEquipo ctrlEquipos, ControladorTarea ctrlTareas, ControladorProgramasPreventivos ctrlProgramas) {
+    public VentanaPrincipalProgramas(ControladorEquipo ctrlEquipos, ControladorTarea ctrlTareas, ControladorProgramasPreventivos ctrlProgramas,InicioPrograma2 prin) {
         this.ctrlEquipos = ctrlEquipos;
         this.ctrlTareas = ctrlTareas;
         this.ctrlProgramas = ctrlProgramas;
@@ -49,21 +50,28 @@ public class VentanaPrincipalProgramas extends JFrame {
         btnCrearFase = new JButton("Crear Fase");
         btnAsignar = new JButton("Asignar Tareas a Fase");
         btnConsultar = new JButton("Consultar o Modificar Fases");
-
+        btnSalir = new JButton("Salir");
+        
         btnCrearFase.setEnabled(false);
         btnAsignar.setEnabled(false);
         btnConsultar.setEnabled(false);
-
+        btnSalir.setEnabled(true);
         add(btnCrearPrograma);
         add(btnCrearFase);
         add(btnAsignar);
         add(btnConsultar);
-
+        add(btnSalir);
         //Eventos
         btnCrearPrograma.addActionListener(e -> activarPrograma());
         btnCrearFase.addActionListener(e -> abrirCrearFase());
         btnAsignar.addActionListener(e -> abrirAsignarTareas());
         btnConsultar.addActionListener(e -> abrirConsultarFases());
+        btnSalir.addActionListener(e -> {
+            
+            this.dispose();  
+
+        });
+        
     }
 
     private void activarPrograma() {

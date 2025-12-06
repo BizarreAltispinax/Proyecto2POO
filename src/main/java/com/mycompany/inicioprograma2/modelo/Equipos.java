@@ -27,7 +27,7 @@ public class Equipos implements Serializable {
     private double costoInicial;
     private String especificaciones;
     private String garantia;
-
+    private Integer idPadre;
     private int equipoPadre;   // Nuevo campo
 
     public enum EstadoEquipo {
@@ -163,6 +163,10 @@ public class Equipos implements Serializable {
     public int getEquipoPadre() {
         return equipoPadre;
     }
+    public Integer getEquipoPadreInteger() {
+        return idPadre=equipoPadre;
+    }
+
 
     public void setEquipoPadre(int equipoPadre) {
         this.equipoPadre = equipoPadre;

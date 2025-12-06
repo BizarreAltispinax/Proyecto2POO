@@ -1,9 +1,6 @@
-com\mycompany\inicioprograma2\vista\InicioPrograma2.class
-com\mycompany\inicioprograma2\vista\VentanaConsultarEquipo.class
-com\mycompany\inicioprograma2\modelo\Equipos$EstadoEquipo.class
-com\mycompany\inicioprograma2\vista\VentanaCrearEquipo.class
-com\mycompany\inicioprograma2\vista\VentanaEliminarEquipo.class
-com\mycompany\inicioprograma2\vista\VentanaModificarEquipo.class
-com\mycompany\inicioprograma2\vista\VentanaPrincipal.class
-com\mycompany\inicioprograma2\controlador\ControladorEquipo.class
+com\mycompany\inicioprograma2\modelo\Persistencia.class
+com\mycompany\inicioprograma2\vista\equipos\ConultaArbol.class
 com\mycompany\inicioprograma2\modelo\Equipos.class
+com\mycompany\inicioprograma2\modelo\Equipos$EstadoEquipo.class
+com\mycompany\inicioprograma2\vista\InicioPrograma2.class
+com\mycompany\inicioprograma2\controlador\ControladorEquipo.class

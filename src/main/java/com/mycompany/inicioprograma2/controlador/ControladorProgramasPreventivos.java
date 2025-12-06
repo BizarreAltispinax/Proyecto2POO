@@ -5,21 +5,28 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.Fase;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.ProgramaMantenimientoPreventivo;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.TipoFrecuencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
-
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ControladorProgramasPreventivos {
     //Id del equipo a programa preventivo
-    private final Map<Integer, ProgramaMantenimientoPreventivo> programas;
+    private Map<Integer, ProgramaMantenimientoPreventivo> programas;
     private final ControladorEquipo ctrlEquipos;
 
     public ControladorProgramasPreventivos(ControladorEquipo ctrlEquipos) {
         this.ctrlEquipos = ctrlEquipos;
-        this.programas = new HashMap<>();
-    }
 
+        this.programas = Persistencia.cargar3("programasPreventivos.dat");
+
+        if (this.programas == null) {
+            this.programas = new HashMap<>();
+        }
+    }
+    public void guardar() {
+        Persistencia.guardar3("programasPreventivos.dat", programas);
+    }
     public boolean crearProgramaParaEquipo(int idEquipo) {
         Equipos eq = ctrlEquipos.buscarPorId(idEquipo);
         if (eq == null)

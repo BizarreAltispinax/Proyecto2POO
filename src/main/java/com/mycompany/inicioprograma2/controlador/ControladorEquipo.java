@@ -9,6 +9,7 @@ package com.mycompany.inicioprograma2.controlador;
  * @author Usuario
  */
 import com.mycompany.inicioprograma2.modelo.Equipos;
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,18 +23,23 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class ControladorEquipo {
     private String rutaArchivo;
     private final ArrayList<Equipos> equipos;
 
     public ControladorEquipo() {
-        equipos = new ArrayList<>();
+        equipos = Persistencia.cargar("equipos.dat");
+ 
         this.rutaArchivo = "datos.txt";
     }
 
     public ArrayList<Equipos> getEquipos() {
         return equipos;
+    }
+    public void guardar() {
+        Persistencia.guardar("equipos.dat", equipos);
     }
 
     public Equipos buscarPorId(int id) {
@@ -58,7 +64,17 @@ public class ControladorEquipo {
         equipos.add(nuevo);
         return true;
     }
-    
+    public DefaultMutableTreeNode construirSubArbol(Equipos raiz, List<Equipos> equipos) {
+        DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(raiz);
+
+        for (Equipos e : equipos) {
+            if (e.getEquipoPadreInteger() != null && e.getEquipoPadreInteger() == raiz.getId()) {
+                nodo.add(construirSubArbol(e, equipos));
+            }
+        }
+
+        return nodo;
+    }
     
     
     public boolean modificarEquipo(
@@ -286,6 +302,8 @@ public class ControladorEquipo {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             sb.append(e.toString()); 
+            sb.append("\n Componentes de los que esta conformado: ");
+            sb.append("\n");
             imprimirRecursivo(e, sb, 0);
         }
         generarPDF("Reporte_Equipo.pdf", sb.toString());

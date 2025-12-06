@@ -1,5 +1,6 @@
 package com.mycompany.inicioprograma2.controlador;
 
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas.Falla;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ public class ControladorFalla {
     private final ArrayList<Falla> fallas;
 
     public ControladorFalla() {
-        fallas = new ArrayList<>();
+        fallas = Persistencia.cargar("fallas.dat");
     }
 
     public ArrayList<Falla> getFallas() {
@@ -21,7 +22,9 @@ public class ControladorFalla {
         }
         return null;
     }
-
+    public void guardar() {
+        Persistencia.guardar("fallas.dat", fallas);
+    }
     public boolean agregarFalla(String descripcion, String tipo, String criticidad) {
         if (descripcion == null || descripcion.isBlank()) return false;
         if (tipo == null || tipo.isBlank()) return false;

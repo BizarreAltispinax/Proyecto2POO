@@ -1,5 +1,6 @@
 package com.mycompany.inicioprograma2.controlador;
 
+import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.EstadoOrden;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.HistorialFallas;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.OrdenTrabajoPreventivo;
@@ -11,7 +12,7 @@ public class ControladorOrdenPreventiva {
     private final ArrayList<OrdenTrabajoPreventivo> ordenes;
 
     public ControladorOrdenPreventiva() {
-        ordenes = new ArrayList<>();
+                ordenes = Persistencia.cargar("ordenes.dat");
     }
 
     public ArrayList<OrdenTrabajoPreventivo> getOrdenes() {
@@ -25,7 +26,9 @@ public class ControladorOrdenPreventiva {
 
         return null;
     }
-
+    public void guardar() {
+        Persistencia.guardar("fallas.dat", ordenes);
+    }
     public boolean crearOrden(int equipoId, int faseIndex, LocalDate fechaProgramada) {
         if (equipoId <= 0) return false;
         if (faseIndex < 0) return false;
