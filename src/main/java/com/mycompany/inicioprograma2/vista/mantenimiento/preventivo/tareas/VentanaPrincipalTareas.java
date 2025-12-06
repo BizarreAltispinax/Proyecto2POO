@@ -8,9 +8,7 @@ package com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.tareas;
  *
  * @author Usuario
  */
-import com.mycompany.inicioprograma2.controlador.ControladorMatenimientoPreventivo;
 import com.mycompany.inicioprograma2.controlador.ControladorTarea;
-import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.fases.VentanaCrearFase;
 
 import javax.swing.*;
 import java.awt.*;

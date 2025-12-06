@@ -1,7 +1,6 @@
 package com.mycompany.inicioprograma2.vista.mantenimiento;
 
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.VentanaPrincipalMantePreventivo;
-import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.fases.VentanaPrincipalFases;
 
 import javax.swing.*;
 import java.awt.*;
