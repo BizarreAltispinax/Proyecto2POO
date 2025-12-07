@@ -131,7 +131,9 @@ public class Equipos implements Serializable {
     public EstadoEquipo getEstado() {
         return estado;
     }
-
+    public String getEstadoS() {
+        return estado.toString();
+    }
     public void setEstado(EstadoEquipo estado) {
         this.estado = estado;
     }

@@ -5,6 +5,8 @@
 package com.mycompany.inicioprograma2.vista;
 import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
 import com.mycompany.inicioprograma2.vista.equipos.ConultaArbol;
+import com.mycompany.inicioprograma2.vista.equipos.GraficoEstado;
+import com.mycompany.inicioprograma2.vista.equipos.GraficoTipos;
 import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalMantenimiento;
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.*;
 import com.mycompany.inicioprograma2.controlador.*;
@@ -35,6 +37,11 @@ public class InicioPrograma2 extends JFrame {
         JButton btnConsultarArbol = new JButton("Consultar en estilo Arbol");
         add(btnConsultarArbol);
         
+        JButton btnGraficos1 = new JButton("Graficos1");
+        add(btnGraficos1);
+        
+        JButton btnGraficos2 = new JButton("Graficos2");
+        add(btnGraficos2);
 
         btnEquipos.addActionListener(e -> {
             new VentanaPrincipalEquipos(ctlEquipos,this).setVisible(true);
@@ -46,6 +53,16 @@ public class InicioPrograma2 extends JFrame {
         });
         btnMantePreventivo.addActionListener(e -> {
             new VentanaPrincipalMantenimiento(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlPP,ctlTarea,this).setVisible(true);
+            this.setVisible(false);  //Opcion C
+        });
+        
+        btnGraficos1.addActionListener(e -> {
+            new GraficoTipos(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion C
+        });
+        
+        btnGraficos2.addActionListener(e -> {
+            new GraficoEstado(ctlEquipos,this).setVisible(true);
             this.setVisible(false);  //Opcion C
         });
         

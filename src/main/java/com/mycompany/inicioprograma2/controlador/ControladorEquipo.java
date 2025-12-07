@@ -9,7 +9,9 @@ package com.mycompany.inicioprograma2.controlador;
  * @author Usuario
  */
 import com.mycompany.inicioprograma2.modelo.Equipos;
+import com.mycompany.inicioprograma2.modelo.Equipos.EstadoEquipo;
 import com.mycompany.inicioprograma2.modelo.Persistencia;
+import java.util.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,7 +77,29 @@ public class ControladorEquipo {
 
         return nodo;
     }
-    
+    public Map<String, Integer>ConteoTipos(){
+        Map<String, Integer> conteo = new HashMap<>();
+        for (Equipos e : equipos) {
+            conteo.put(e.getTipo(), conteo.getOrDefault(e.getTipo(), 0) + 1);
+        }
+        return conteo;
+    }
+    public Map<EstadoEquipo, Integer> contarPorEstado() {
+        Map<EstadoEquipo, Integer> conteo = new EnumMap<>(EstadoEquipo.class);
+
+        // Inicializa
+        for (EstadoEquipo e : EstadoEquipo.values()) {
+            conteo.put(e, 0);
+        }
+
+        // Cuenta
+        for (Equipos eq : equipos) {
+            conteo.put(eq.getEstado(), conteo.get(eq.getEstado()) + 1);
+        }
+
+        return conteo;
+    }  
+        
     
     public boolean modificarEquipo(
         int id,
