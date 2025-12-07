@@ -6,8 +6,21 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.Est
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana utilizada para cancelar una orden de mantenimiento preventivo.
+ * <p>
+ * Permite seleccionar una orden activa (no terminada), indicar la fecha
+ * de cancelación y registrar una razón. Tras confirmar, se solicita al
+ * controlador que actualice el estado de la orden.
+ * </p>
+ */
 public class VentanaCancelarOrden extends JFrame {
+    
+    /**
+     * Construye la ventana de cancelación de una orden.
+     *
+     * @param controlador controlador encargado de gestionar las órdenes preventivas
+     */
     public VentanaCancelarOrden(ControladorOrdenPreventiva controlador) {
         setTitle("Cancelar Orden");
         setSize(400,250);
@@ -21,7 +34,7 @@ public class VentanaCancelarOrden extends JFrame {
                 combo.addItem(o.getId() + " - Equipo " + o.getIdEquipo());
             }
         }
-
+        // Fecha por defecto: hoy
         JTextField txtFecha = new JTextField(LocalDate.now().toString());
         JTextField txtRazon = new JTextField();
 
@@ -39,9 +52,9 @@ public class VentanaCancelarOrden extends JFrame {
 
         add(btnCancelar);
         add(btnCerrar);
-
+        // Cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción para cancelar la orden
         btnCancelar.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(combo.getSelectedItem().toString().split(" - ")[0]);

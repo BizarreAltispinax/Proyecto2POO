@@ -7,8 +7,25 @@ import com.mycompany.inicioprograma2.modelo.Equipos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ventana de interfaz gráfica para la creación de una nueva orden de mantenimiento correctivo.
+ * <p>
+ * Esta ventana permite:
+ * <ul>
+ *     <li>Seleccionar un equipo disponible</li>
+ *     <li>Ingresar una descripción del problema</li>
+ *     <li>Elegir la prioridad de la orden</li>
+ *     <li>Crear la orden mediante el controlador correspondiente</li>
+ * </ul>
+ * Una vez creada la orden, la ventana se cierra automáticamente.
+ */
 public class VentanaCrearOrdenCorrectiva extends JFrame {
-
+     /**
+     * Constructor que inicializa la interfaz gráfica para crear una orden correctiva.
+     *
+     * @param ctrlOrden   Controlador encargado de gestionar las órdenes correctivas.
+     * @param ctrlEquipos Controlador que contiene los equipos registrados.
+     */
     public VentanaCrearOrdenCorrectiva(ControladorOrdenCorrectiva ctrlOrden,
                                        ControladorEquipo ctrlEquipos) {
 
@@ -16,7 +33,7 @@ public class VentanaCrearOrdenCorrectiva extends JFrame {
         setSize(450, 300);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(6, 2, 10, 10));
-
+         // Llenar combo con los equipos disponibles
         JComboBox<String> comboEquipos = new JComboBox<>();
         for (Equipos e : ctrlEquipos.getEquipos()) {
             comboEquipos.addItem(e.getId() + " - " + e.getDescripcion());
@@ -29,7 +46,7 @@ public class VentanaCrearOrdenCorrectiva extends JFrame {
 
         JButton btnCrear = new JButton("Crear Orden");
         JButton btnCerrar = new JButton("Cerrar");
-
+        // Construcción del formulario
         add(new JLabel("Equipo:"));
         add(comboEquipos);
 
@@ -44,9 +61,9 @@ public class VentanaCrearOrdenCorrectiva extends JFrame {
 
         add(btnCrear);
         add(btnCerrar);
-
+        // Cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Crear orden
         btnCrear.addActionListener(e -> {
             try {
                 int idEquipo = Integer.parseInt(comboEquipos.getSelectedItem().toString().split(" - ")[0]);

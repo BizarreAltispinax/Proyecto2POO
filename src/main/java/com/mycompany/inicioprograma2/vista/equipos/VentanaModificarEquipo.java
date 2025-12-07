@@ -15,6 +15,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Ventana destinada a modificar los datos de un equipo existente.
+ * 
+ * El usuario primero ingresa un ID y valida si existe. 
+ * Una vez validado, se habilita la edición manual de todos los campos,
+ * los cuales deben completarse nuevamente, ya que no se cargan automáticamente.
+ * 
+ * Al guardar, se envía toda la información al ControladorEquipo, que realiza
+ * la actualización real en la estructura de datos.
+ * 
+ * Esta ventana incluye datos básicos, técnicos, de estado, costos, y relaciones con equipos padre.
+ * 
+ * @author Usuario
+ */
 public class VentanaModificarEquipo extends JFrame {
 
     private ControladorEquipo controlador;
@@ -40,7 +54,11 @@ public class VentanaModificarEquipo extends JFrame {
     private JButton btnCancelar;
 
     private int idEquipoModificar = -1;
-
+     /**
+     * Constructor principal que inicializa la ventana.
+     *
+     * @param controlador instancia del controlador de equipos.
+     */
     public VentanaModificarEquipo(ControladorEquipo controlador) {
         this.controlador = controlador;
 

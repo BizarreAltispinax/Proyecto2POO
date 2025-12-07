@@ -8,14 +8,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Ventana en forma de diálogo para seleccionar fallas detectadas en un equipo
+ * y registrar las causas y acciones tomadas. Se utiliza en la creación o modificación
+ * de órdenes preventivas.
+ *
+ * <p>Esta ventana permite seleccionar múltiples fallas de la lista de fallas de un equipo
+ * y asociarlas a un historial.</p>
+ */
 public class VentanaAgregarFallasDetectadas extends JDialog {
     private final List<HistorialFallas> resultado = new ArrayList<>();
-
+    
+    /**
+     * Obtiene las fallas seleccionadas junto a sus causas y acciones.
+     *
+     * @return lista de objetos {@link HistorialFallas}
+     */
     public List<HistorialFallas> getResultado() {
         return resultado;
     }
-
+     /**
+     * Constructor del diálogo de selección de fallas detectadas.
+     *
+     * @param parent ventana padre que abrió el diálogo
+     * @param ctrlFallas controlador de fallas para obtener y buscar fallas del equipo
+     * @param idEquipo identificador del equipo al que pertenecen las fallas
+     */
     public VentanaAgregarFallasDetectadas(Frame parent, ControladorFalla ctrlFallas, int idEquipo) {
         super(parent, "Fallas Detectadas", true);
         setSize(500,400);
@@ -35,7 +53,7 @@ public class VentanaAgregarFallasDetectadas extends JDialog {
         for (Falla f : fallasEquipo) {
             modelo.addElement(f.getId() + " - " + f.getDescripcion());
         }
-
+        // Lista con selección múltiple
         JList<String> lista = new JList<>(modelo);
         lista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -59,9 +77,9 @@ public class VentanaAgregarFallasDetectadas extends JDialog {
         abajo.add(btnCerrar);
 
         add(abajo, BorderLayout.SOUTH);
-
+        // Cerrar ventana sin guardar
         btnCerrar.addActionListener(e -> dispose());
-
+        // Guardar selección
         btnAceptar.addActionListener(e -> {
             for (String sel : lista.getSelectedValuesList()) {
                 int idFalla = Integer.parseInt(sel.split(" - ")[0]);

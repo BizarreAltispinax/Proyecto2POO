@@ -7,14 +7,28 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
-
+/**
+ * Ventana que permite listar, modificar y eliminar las fases
+ * de un programa preventivo de un equipo específico.
+ * <p>
+ * Muestra la información de cada fase en una tabla y permite
+ * realizar acciones sobre la fase seleccionada.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaListaFases extends JFrame {
     private final int idEquipo;
     private final ControladorProgramasPreventivos controlador;
 
     private final DefaultTableModel modelo;
     private final JTable tabla;
-
+     /**
+     * Constructor de la ventana de listado de fases.
+     *
+     * @param idEquipo    ID del equipo
+     * @param controlador Controlador de programas preventivos
+     */
     public VentanaListaFases(int idEquipo, ControladorProgramasPreventivos controlador) {
         this.idEquipo = idEquipo;
         this.controlador = controlador;
@@ -87,7 +101,9 @@ public class VentanaListaFases extends JFrame {
             });
         }
     }
-
+     /**
+     * Carga las fases del equipo en la tabla.
+     */
     private void eliminarFase() {
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
@@ -112,7 +128,10 @@ public class VentanaListaFases extends JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo eliminar la fase");
         }
     }
-
+     /**
+     * Elimina la fase seleccionada en la tabla.
+     * Muestra confirmación antes de eliminar.
+     */
     private void abrirModificarFase() {
         int fila = tabla.getSelectedRow();
         if (fila == -1) {

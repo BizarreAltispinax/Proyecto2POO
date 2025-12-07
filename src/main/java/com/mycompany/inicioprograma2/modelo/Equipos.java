@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * Clase que representa un equipo computacional con jerarquía.
+ * Representa un equipo con datos técnicos, ubicación, historial de adquisición
+ * y relaciones jerárquicas entre equipos (padre–hijo). Implementa Serializable
+ * para permitir su almacenamiento en archivos mediante persistencia.
  */
 public class Equipos implements Serializable {
 
@@ -35,7 +37,24 @@ public class Equipos implements Serializable {
         FUERA_DE_SERVICIO,
         DESECHADO
     }
-
+    /**
+     * Constructor completo del objeto Equipos.
+     *
+     * @param id                   identificador del equipo
+     * @param descripcion          descripción del equipo
+     * @param tipo                 tipo de equipo
+     * @param ubicacion            ubicación física
+     * @param fabricante           fabricante del equipo
+     * @param serie                número de serie
+     * @param fechaAdquisicion     fecha de adquisición
+     * @param fechaPuestaServicio  fecha de puesta en servicio
+     * @param mesesVidaUtil        vida útil estimada en meses
+     * @param estado               estado actual del equipo
+     * @param costoInicial         costo inicial
+     * @param especificaciones     especificaciones técnicas
+     * @param garantia             garantía del equipo
+     * @param equipoPadre          ID del equipo padre
+     */
     public Equipos(int id, String descripcion, String tipo, String ubicacion, String fabricante,
                   String serie, LocalDate fechaAdquisicion, LocalDate fechaPuestaServicio,
                   int mesesVidaUtil, EstadoEquipo estado, double costoInicial,
@@ -57,7 +76,7 @@ public class Equipos implements Serializable {
         this.garantia = garantia;
         this.equipoPadre = equipoPadre;
     }
-
+    //Getters y Setters
     public int getId() {
         return id;
     }
@@ -176,7 +195,7 @@ public class Equipos implements Serializable {
         this.equipoPadre = equipoPadre;
     }
 
-    
+    //2 toString diferentes
     public String toString2() {
     return "ID: " + id + "\n" +
            "Descripción: " + descripcion + "\n" +

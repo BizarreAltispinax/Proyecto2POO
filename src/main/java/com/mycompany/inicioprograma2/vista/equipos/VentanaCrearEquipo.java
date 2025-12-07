@@ -14,9 +14,21 @@ import com.mycompany.inicioprograma2.modelo.Equipos;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana para crear un nuevo equipo dentro del sistema. Permite ingresar
+ * información general, datos técnicos, fechas, estado y opcionalmente
+ * seleccionar un equipo padre al cual pertenecen sus componentes.
+ *
+ * <p>Los datos ingresados son enviados al {@link ControladorEquipo}
+ * para su validación y posterior registro.</p>
+ */
 public class VentanaCrearEquipo extends JFrame {
-
+     /**
+     * Constructor principal que arma visualmente el formulario de creación
+     * de equipos y define las acciones de los botones.
+     *
+     * @param controlador controlador encargado de gestionar operaciones de equipos.
+     */
     public VentanaCrearEquipo(ControladorEquipo controlador) {
 
         setTitle("Crear Equipo");
@@ -26,7 +38,7 @@ public class VentanaCrearEquipo extends JFrame {
 
         JTextField txtDesc = new JTextField();
         
-        
+        // Combo con tipos cargados desde el controlador
         JComboBox<String> comboTipo = new JComboBox<>();
         controlador.cargarOpcionesEn(comboTipo);
         
@@ -51,7 +63,7 @@ public class VentanaCrearEquipo extends JFrame {
         chkTienePadre.addActionListener(e -> {
             comboPadres.setEnabled(chkTienePadre.isSelected());
         });
-
+        // Cargar equipos existentes para seleccionar como padre
         controlador.getEquipos().forEach(comboPadres::addItem);
 
         add(new JLabel("Descripción:")); add(txtDesc);
@@ -75,9 +87,9 @@ public class VentanaCrearEquipo extends JFrame {
 
         JButton btnCerrar = new JButton("Cerrar");
         add(btnCerrar);
-
+        // Cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción para guardar equipo
         btnGuardar.addActionListener(e -> {
 
             try {

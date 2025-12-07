@@ -9,12 +9,22 @@ import com.mycompany.inicioprograma2.modelo.Persistencia;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Controlador encargado de gestionar los Programas de Mantenimiento Preventivo
+ * asociados a cada equipo. Permite crear programas, modificar fases, agregar tareas
+ * y administrar la persistencia de la información.
+ */
 public class ControladorProgramasPreventivos {
     //Id del equipo a programa preventivo
     private Map<Integer, ProgramaMantenimientoPreventivo> programas;
     private final ControladorEquipo ctrlEquipos;
-
+    
+    
+     /**
+     * Constructor que inicializa los programas desde persistencia.
+     *
+     * @param ctrlEquipos controlador para validar equipos existentes.
+     */
     public ControladorProgramasPreventivos(ControladorEquipo ctrlEquipos) {
         this.ctrlEquipos = ctrlEquipos;
         
@@ -30,6 +40,7 @@ public class ControladorProgramasPreventivos {
     }
     public boolean crearProgramaParaEquipo(int idEquipo) {
         Equipos eq = ctrlEquipos.buscarPorId(idEquipo);
+        //Validaciones
         if (eq == null)
             return false;
         if (programas.containsKey(idEquipo))
@@ -47,7 +58,7 @@ public class ControladorProgramasPreventivos {
         ProgramaMantenimientoPreventivo p = programas.get(idEquipo);
         return p == null ? null : p.getFases();
     }
-
+    //Crea fases
     public boolean crearFase(int idEquipo, TipoFrecuencia tipo, int medidor, int ciclos, String partes, String herramientas, String personal, float horas) {
         ProgramaMantenimientoPreventivo p = programas.get(idEquipo);
         if (p == null)
@@ -57,12 +68,12 @@ public class ControladorProgramasPreventivos {
         p.agregarFase(f);
         return true;
     }
-
+    //Elimina fases
     public boolean eliminarFase(int idEquipo, int indiceFase) {
         ProgramaMantenimientoPreventivo p = programas.get(idEquipo);
         return p != null && p.eliminarFase(indiceFase);
     }
-
+    //Modifica fases
     public boolean modificarFase(
             int idEquipo,
             int indiceFase,
@@ -101,7 +112,14 @@ public class ControladorProgramasPreventivos {
             return false;
         }
     }
-
+     /**
+     * Agrega una tarea a una fase específica dentro del programa de un equipo.
+     *
+     * @param idEquipo ID del equipo.
+     * @param indiceFase índice de la fase.
+     * @param tarea tarea a agregar.
+     * @return true si la tarea se agrega correctamente.
+     */
     public boolean agregarTareaAFase(int idEquipo, int indiceFase, Tarea tarea) {
         ProgramaMantenimientoPreventivo p = programas.get(idEquipo);
         if (p == null)

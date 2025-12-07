@@ -6,9 +6,17 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.ordenes.Est
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana utilizada para finalizar una orden correctiva.
+ * Permite ingresar información como fecha final, horas trabajadas,
+ * costos y observaciones, y luego confirma el cierre de la orden.
+ */
 public class VentanaFinalizarOrdenCorrectiva extends JFrame {
-
+     /**
+     * Constructor que inicializa la ventana para finalizar órdenes correctivas.
+     *
+     * @param ctrlOrden controlador que gestiona las órdenes correctivas
+     */
     public VentanaFinalizarOrdenCorrectiva(ControladorOrdenCorrectiva ctrlOrden) {
 
         setTitle("Finalizar Orden Correctiva");
@@ -22,7 +30,7 @@ public class VentanaFinalizarOrdenCorrectiva extends JFrame {
                 combo.addItem(o.getId() + " - Equipo " + o.getIdEquipo());
             }
         }
-
+        // Campos de entrada
         JTextField txtFecha = new JTextField(LocalDate.now().toString());
         JTextField txtHoras = new JTextField();
         JTextField txtManoObra = new JTextField();
@@ -31,7 +39,7 @@ public class VentanaFinalizarOrdenCorrectiva extends JFrame {
         JTextField txtObs = new JTextField();
         JTextField txtCausa = new JTextField();
         JTextField txtAcciones = new JTextField();
-
+        // Agrega componentes al layout
         JButton btnFinalizar = new JButton("Finalizar");
         JButton btnCerrar = new JButton("Cerrar");
 
@@ -64,7 +72,7 @@ public class VentanaFinalizarOrdenCorrectiva extends JFrame {
 
         add(btnFinalizar);
         add(btnCerrar);
-
+        // Botón para cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
 
         btnFinalizar.addActionListener(e -> {

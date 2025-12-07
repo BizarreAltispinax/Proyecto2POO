@@ -7,8 +7,21 @@ import com.mycompany.inicioprograma2.vista.equipos.VentanaEliminarEquipo;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
+/**
+ * Ventana para eliminar tareas de mantenimiento preventivo.
+ * <p>
+ * Muestra una tabla con las tareas existentes y permite seleccionar
+ * una para eliminarla mediante el controlador correspondiente.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaEliminarTarea extends JFrame {
+     /**
+     * Constructor que inicializa la ventana y sus componentes.
+     * 
+     * @param controlador Controlador de tareas que gestiona la eliminación
+     */
     public VentanaEliminarTarea(ControladorTarea controlador) {
         setTitle("Eliminar Tarea");
         setSize(300, 200);

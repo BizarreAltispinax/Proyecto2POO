@@ -6,9 +6,16 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.ordenes.Est
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana utilizada para iniciar una orden correctiva.
+ * Muestra solo órdenes abiertas y permite asignar una fecha de inicio.
+ */
 public class VentanaIniciarOrdenCorrectiva extends JFrame {
-
+     /**
+     * Constructor que crea la ventana para iniciar órdenes correctivas.
+     *
+     * @param ctrlOrden controlador que maneja las órdenes correctivas
+     */
     public VentanaIniciarOrdenCorrectiva(ControladorOrdenCorrectiva ctrlOrden) {
 
         setTitle("Iniciar Orden Correctiva");
@@ -22,9 +29,9 @@ public class VentanaIniciarOrdenCorrectiva extends JFrame {
                 combo.addItem(o.getId() + " - Equipo " + o.getIdEquipo());
             }
         }
-
+        // Fecha de inicio por defecto: hoy
         JTextField txtFecha = new JTextField(LocalDate.now().toString());
-
+        // Agrega componentes al layout
         JButton btnIniciar = new JButton("Iniciar");
         JButton btnCerrar = new JButton("Cerrar");
 
@@ -36,9 +43,9 @@ public class VentanaIniciarOrdenCorrectiva extends JFrame {
 
         add(btnIniciar);
         add(btnCerrar);
-
+        // Cierra la ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción para iniciar orden
         btnIniciar.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(combo.getSelectedItem().toString().split(" - ")[0]);

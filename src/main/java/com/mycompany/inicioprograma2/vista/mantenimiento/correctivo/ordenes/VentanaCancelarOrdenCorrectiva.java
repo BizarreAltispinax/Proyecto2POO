@@ -6,9 +6,25 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.ordenes.Est
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana para cancelar una orden correctiva existente.
+ * <p>
+ * Esta interfaz permite:
+ * <ul>
+ *     <li>Seleccionar una orden no finalizada</li>
+ *     <li>Ingresar la fecha de cancelación</li>
+ *     <li>Indicar la razón de la cancelación</li>
+ *     <li>Ejecutar la acción por medio del controlador</li>
+ * </ul>
+ * Una vez cancelada, la ventana se cierra y se persisten los cambios.
+ */
 public class VentanaCancelarOrdenCorrectiva extends JFrame {
-
+     /**
+     * Constructor que prepara la interfaz gráfica para cancelar
+     * una orden correctiva.
+     *
+     * @param ctrlOrden Controlador encargado de manejar las órdenes correctivas.
+     */
     public VentanaCancelarOrdenCorrectiva(ControladorOrdenCorrectiva ctrlOrden) {
 
         setTitle("Cancelar Orden Correctiva");
@@ -28,7 +44,7 @@ public class VentanaCancelarOrdenCorrectiva extends JFrame {
 
         JButton btnCancelar = new JButton("Cancelar Orden");
         JButton btnCerrar = new JButton("Cerrar");
-
+        // Añadir elementos al layout
         add(new JLabel("Orden:"));
         add(combo);
 
@@ -40,9 +56,9 @@ public class VentanaCancelarOrdenCorrectiva extends JFrame {
 
         add(btnCancelar);
         add(btnCerrar);
-
+        // Cierra la ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Ejecuta la cancelación
         btnCancelar.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(combo.getSelectedItem().toString().split(" - ")[0]);

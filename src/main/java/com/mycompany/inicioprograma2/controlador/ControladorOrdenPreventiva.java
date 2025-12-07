@@ -8,10 +8,19 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.Ord
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Controlador encargado de gestionar las órdenes de mantenimiento preventivo.
+ * Permite crear, buscar, iniciar, finalizar, cancelar y agregar fallas a una orden,
+ * además de manejar la carga y persistencia de datos.
+ */
 public class ControladorOrdenPreventiva {
     ControladorEquipo controladorEquipo = new ControladorEquipo();
     private final ArrayList<OrdenTrabajoPreventivo> ordenes;
-
+    
+    /**
+     * Constructor que carga las órdenes desde persistencia
+     * y actualiza el contador estático de IDs.
+     */
     public ControladorOrdenPreventiva() {
         ordenes = Persistencia.cargar("data/ordenesPreventivas.dat");
         actualizarContador();
@@ -36,10 +45,18 @@ public class ControladorOrdenPreventiva {
 
         return null;
     }
+    //Guarda la informacion del controlador
     public void guardar() {
         Persistencia.guardar("data/ordenesPreventivas.dat", ordenes);
     }
-
+     /**
+     * Crea una nueva orden preventiva si todos los parámetros son válidos.
+     *
+     * @param equipoId         ID del equipo asociado.
+     * @param faseIndex        índice de la fase del programa preventivo.
+     * @param fechaProgramada  fecha asignada para realizar el mantenimiento.
+     * @return true si se crea correctamente.
+     */
     public boolean crearOrden(int equipoId, int faseIndex, LocalDate fechaProgramada) {
         faseIndex = faseIndex+1;
         if (equipoId <= 0) return false;
@@ -86,7 +103,7 @@ public class ControladorOrdenPreventiva {
 
         return true;
     }
-
+    //Permite agrear una falla
     public boolean agregarFalla(int idOrden, HistorialFallas historial) {
         OrdenTrabajoPreventivo o = buscarPorId(idOrden);
 

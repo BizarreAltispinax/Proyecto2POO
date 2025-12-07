@@ -5,8 +5,22 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.TipoF
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana para crear una nueva tarea de mantenimiento preventivo.
+ * <p>
+ * Permite al usuario ingresar la descripción de una tarea y guardarla
+ * mediante el controlador correspondiente.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaCrearTarea extends JFrame {
+    
+    /**
+     * Constructor que inicializa la ventana y sus componentes.
+     * 
+     * @param controlador Controlador de tareas que gestiona la creación de nuevas tareas
+     */
     public VentanaCrearTarea(ControladorTarea controlador) {
         setTitle("Crear Tarea");
         setSize(500, 200);
@@ -22,9 +36,9 @@ public class VentanaCrearTarea extends JFrame {
 
         JButton btnCerrar = new JButton("Cerrar");
         add(btnCerrar);
-
+        // Acción para cerrar la ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción para guardar la tarea usando el controlador
         btnGuardar.addActionListener(e -> {
 
             try {

@@ -6,8 +6,26 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.TipoF
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana para modificar los datos de una fase específica
+ * de un programa preventivo de un equipo.
+ * <p>
+ * Permite cambiar los atributos de la fase y actualizar la información
+ * en el controlador correspondiente.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaModificarFase extends JFrame {
+    
+    /**
+     * Constructor que inicializa la ventana con los datos de la fase a modificar.
+     *
+     * @param idEquipo     ID del equipo
+     * @param indiceFase   Índice de la fase a modificar
+     * @param controlador  Controlador de programas preventivos
+     * @param ventanaPadre Ventana de lista de fases que será actualizada al guardar
+     */
     public VentanaModificarFase(int idEquipo, int indiceFase, ControladorProgramasPreventivos controlador, VentanaListaFases ventanaPadre) {
         setTitle("Modificar Fase");
         setSize(500, 500);
@@ -50,9 +68,9 @@ public class VentanaModificarFase extends JFrame {
         add(btnGuardar);
         add(btnCerrar);
 
-
+        // Acción cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción guardar cambios en la fase
         btnGuardar.addActionListener(e -> {
             try {
                 TipoFrecuencia nuevaFrecuencia = (TipoFrecuencia) comboFrecuencia.getSelectedItem();

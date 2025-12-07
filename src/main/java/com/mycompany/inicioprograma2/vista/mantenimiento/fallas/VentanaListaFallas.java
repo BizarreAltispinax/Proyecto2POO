@@ -6,14 +6,22 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.fallas.Falla;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
+/**
+ * Ventana que muestra la lista de fallas asociadas a un equipo específico.
+ * Permite eliminar y modificar fallas existentes.
+ */
 public class VentanaListaFallas extends JFrame {
 
     private final ControladorFalla controlador;
     private final int idEquipo;   // ← NUEVO
     private final DefaultTableModel modelo;
     private final JTable tabla;
-
+     /**
+     * Constructor que inicializa la ventana para listar fallas.
+     *
+     * @param controlador controlador de fallas
+     * @param idEquipo    ID del equipo al cual pertenecen las fallas
+     */
     public VentanaListaFallas(ControladorFalla controlador, int idEquipo) {
         this.controlador = controlador;
         this.idEquipo = idEquipo;
@@ -45,12 +53,17 @@ public class VentanaListaFallas extends JFrame {
 
         add(scroll, BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);
-
+        // Cierra ventana
         btnCerrar.addActionListener(e -> dispose());
+        // Elimina el elemento seleccionado
         btnEliminar.addActionListener(e -> eliminarSeleccionada());
+        // Abre ventana de modificación
         btnModificar.addActionListener(e -> modificarSeleccionada());
     }
-
+    /**
+     * Carga la tabla con las fallas del equipo actual.
+     * Limpia el modelo antes de rellenarlo.
+     */
     private void cargarTabla() {
         modelo.setRowCount(0);
         for (Falla f : controlador.getFallasEquipo(idEquipo)) {
@@ -60,7 +73,10 @@ public class VentanaListaFallas extends JFrame {
             });
         }
     }
-
+    /**
+     * Elimina la falla seleccionada en la tabla.
+     * Muestra mensajes si no hay selección.
+     */
     private void eliminarSeleccionada() {
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
@@ -76,7 +92,10 @@ public class VentanaListaFallas extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Falla eliminada.");
     }
-
+    /**
+     * Abre la ventana para modificar la falla seleccionada.
+     * Muestra advertencia si no se seleccionó ninguna.
+     */
     private void modificarSeleccionada() {
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
@@ -89,6 +108,9 @@ public class VentanaListaFallas extends JFrame {
         new VentanaModificarFallas(controlador, idEquipo, idFalla, this).setVisible(true);
     }
 
+    /**
+     * Refresca la tabla después de una modificación o creación.
+     */
     public void refrescar() {
         cargarTabla();
     }

@@ -5,7 +5,14 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tare
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Representa una fase dentro de un plan de mantenimiento preventivo.
+ * <p>
+ * Una fase define su frecuencia, cantidad de ciclos, las tareas asociadas
+ * y los recursos necesarios tales como partes, herramientas, personal
+ * y horas estimadas.
+ * </p>
+ */
 public class Fase implements Serializable {
     private TipoFrecuencia tipoFrecuencia;
     private int medidorFrecuencia;
@@ -16,7 +23,17 @@ public class Fase implements Serializable {
     private String herramientas;
     private String personal;
     private float horasEstimadas;
-
+     /**
+     * Constructor que inicializa una fase con sus parámetros básicos.
+     *
+     * @param tipoFrecuencia Tipo de frecuencia (día, mes, año, etc.).
+     * @param medidorFrecuencia Cantidad asociada al tipo de frecuencia.
+     * @param cantidadCiclos Número de repeticiones según la frecuencia.
+     * @param partes Partes requeridas para la fase.
+     * @param herramientas Herramientas necesarias.
+     * @param personal Personal encargado.
+     * @param horasEstimadas Horas estimadas de trabajo.
+     */
     public Fase(TipoFrecuencia tipoFrecuencia, int medidorFrecuencia, int cantidadCiclos, String partes, String herramientas, String personal, float horasEstimadas) {
         this.tipoFrecuencia = tipoFrecuencia;
         this.medidorFrecuencia = medidorFrecuencia;
@@ -27,7 +44,7 @@ public class Fase implements Serializable {
         this.personal = personal;
         this.horasEstimadas = horasEstimadas;
     }
-
+    //Getters y Setters de los atributos
     public TipoFrecuencia getTipoFrecuencia() {
         return tipoFrecuencia;
     }
@@ -95,7 +112,13 @@ public class Fase implements Serializable {
     public void setHorasEstimadas(float horasEstimadas) {
         this.horasEstimadas = horasEstimadas;
     }
-
+        /**
+     * Genera un texto explicativo legible sobre cómo se ejecuta la fase.
+     *
+     * @param numero Número de la fase dentro del plan.
+     * @param fase Fase a formatear.
+     * @return Descripción textual formateada.
+     */
     public static String formatearFase(int numero, Fase fase) {
         int medidor = fase.getMedidorFrecuencia();
         int ciclos = fase.getCantidadCiclos();
@@ -103,6 +126,7 @@ public class Fase implements Serializable {
 
         //Convertir pluralidad
         String unidad;
+        
         switch (tipo) {
             case "año": unidad = (medidor == 1) ? "año" : "años"; break;
             case "mes": unidad = (medidor == 1) ? "mes" : "meses"; break;

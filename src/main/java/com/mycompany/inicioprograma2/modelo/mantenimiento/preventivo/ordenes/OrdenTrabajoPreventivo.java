@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Representa una orden de trabajo para mantenimiento preventivo,
+ * asociada a un equipo y a una fase específica del programa de mantenimiento.
+ *
+ * <p>Incluye información sobre fechas, estado, costos, horas trabajadas, así como
+ * un registro de fallas observadas durante la ejecución.</p>
+ */
 public class OrdenTrabajoPreventivo implements Serializable {
     private static int contador = 1;
 
@@ -29,7 +35,13 @@ public class OrdenTrabajoPreventivo implements Serializable {
 
     private LocalDate fechaCancelacion;
     private String razonDeCancelacion;
-
+     /**
+     * Crea una orden de trabajo preventivo con la información básica.
+     *
+     * @param idEquipo      ID del equipo asociado
+     * @param indiceFase    fase del programa preventivo a ejecutar
+     * @param fechaAgendada fecha programada para la ejecución
+     */
     public OrdenTrabajoPreventivo(int idEquipo, int indiceFase, LocalDate fechaAgendada) {
         this.id = contador++;
         this.idEquipo = idEquipo;
@@ -40,7 +52,7 @@ public class OrdenTrabajoPreventivo implements Serializable {
 
         this.fallasObservadas = new ArrayList<>();
     }
-
+    //Getters y Setters de los atributos
     public static void setContador(int valor) {
         contador = valor;
     }
@@ -109,7 +121,15 @@ public class OrdenTrabajoPreventivo implements Serializable {
         this.fechaInicioReal = fechaInicio;
         this.estado = EstadoOrden.EN_EJECUCION;
     }
-
+     /**
+     * Marca la orden como finalizada.
+     *
+     * @param fechaFinal       fecha real de finalización
+     * @param horas            horas trabajadas
+     * @param costoManoObra    costo de mano de obra
+     * @param costoMaterial    costo de material utilizado
+     * @param observaciones    observaciones del proceso
+     */
     public void finalizarOrden(LocalDate fechaFinal, float horas, int costoManoObra, int costoMaterial, String observaciones) {
         this.fechaFinalizacionReal = fechaFinal;
         this.horasTrabajadas = horas;
@@ -118,13 +138,18 @@ public class OrdenTrabajoPreventivo implements Serializable {
         this.observaciones = observaciones;
         this.estado = EstadoOrden.TERMINADA;
     }
-
+     /**
+     * Cancela la orden de trabajo.
+     *
+     * @param fechaCancelacion fecha en que se cancela
+     * @param razon            razón de cancelación
+     */
     public void cancelarOrden(LocalDate fechaCancelacion, String razon) {
         this.fechaCancelacion = fechaCancelacion;
         this.razonDeCancelacion = razon;
         this.estado = EstadoOrden.CANCELADA;
     }
-
+    //Agrega una falla
     public void agregarFalla(HistorialFallas falla) {
         fallasObservadas.add(falla);
     }

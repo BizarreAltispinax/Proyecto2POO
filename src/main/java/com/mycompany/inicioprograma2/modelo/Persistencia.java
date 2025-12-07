@@ -6,9 +6,21 @@ package com.mycompany.inicioprograma2.modelo;
 
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * Clase encargada de realizar operaciones de persistencia mediante serialización.
+ * Permite guardar y cargar listas u objetos individuales usando archivos .dat.
+ * 
+ * <p>Incluye varios métodos de guardado/carga para distintos escenarios
+ * (listas, objetos simples, retornos null o vacíos, etc.).</p>
+ */
 public class Persistencia {
-
+     /**
+     * Guarda en un archivo una lista genérica serializable.
+     *
+     * @param <T> Tipo de los elementos de la lista.
+     * @param nombreArchivo Ruta del archivo donde se guardará.
+     * @param lista Lista a serializar.
+     */
     public static <T> void guardar(String nombreArchivo, ArrayList<T> lista) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
             oos.writeObject(lista);
@@ -16,7 +28,12 @@ public class Persistencia {
             System.out.println("Error al guardar " + nombreArchivo + ": " + e.getMessage());
         }
     }
-    
+     /**
+     * Guarda un objeto cualquiera en un archivo mediante serialización.
+     *
+     * @param nombreArchivo Ruta del archivo destino.
+     * @param obj Objeto serializable a guardar.
+     */
     public static void guardar2(String nombreArchivo, Object obj) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
         oos.writeObject(obj);
@@ -24,7 +41,7 @@ public class Persistencia {
         System.out.println("Error al guardar " + nombreArchivo + ": " + e.getMessage());
     }
 }
-    
+
    public static void guardar3(String archivo, Object objeto) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
         oos.writeObject(objeto);
@@ -32,7 +49,13 @@ public class Persistencia {
         System.out.println("Error al guardar " + archivo + ": " + e.getMessage());
     }
 } 
-
+        /**
+     * Carga una lista genérica desde un archivo.
+     *
+     * @param <T> Tipo de elementos que contiene la lista.
+     * @param nombreArchivo Archivo desde el cual se leerá.
+     * @return La lista cargada, o una nueva lista vacía si no existe o hubo error.
+     */
     public static <T> ArrayList<T> cargar(String nombreArchivo) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
             return (ArrayList<T>) ois.readObject();
@@ -44,7 +67,13 @@ public class Persistencia {
         }
     }
     
-    
+     /**
+     * Carga un objeto cualquiera desde un archivo.
+     *
+     * @param <T> Tipo esperado del objeto cargado.
+     * @param nombreArchivo Ruta del archivo origen.
+     * @return El objeto leído, o null si no existe o hubo error.
+     */
     public static <T> T cargar2(String nombreArchivo) {
     try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
         return (T) ois.readObject();

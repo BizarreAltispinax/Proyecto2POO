@@ -13,8 +13,26 @@ import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.tareas.Venta
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana principal del módulo de Mantenimiento Preventivo.
+ * Presenta las opciones para gestionar programas, tareas y órdenes
+ * de mantenimiento preventivo, además de regresar al menú principal.
+ *
+ * <p>Esta ventana funciona como panel principal de navegación
+ * para todas las funciones relacionadas al mantenimiento preventivo.</p>
+ */
 public class VentanaPrincipalMantePreventivo extends JFrame {
+     /**
+     * Constructor de la ventana principal del módulo de mantenimiento preventivo.
+     *
+     * @param ctrlEquipos Controlador de equipos.
+     * @param ctlFallas Controlador de fallas.
+     * @param ctlMP Controlador general de mantenimiento preventivo.
+     * @param ctlOP Controlador de órdenes preventivas.
+     * @param ctlPP Controlador de programas preventivos.
+     * @param ctrlTareas Controlador de tareas de mantenimiento preventivo.
+     * @param prin Ventana principal del sistema.
+     */
     public VentanaPrincipalMantePreventivo(ControladorEquipo ctrlEquipos, ControladorFalla ctlFallas, ControladorMatenimientoPreventivo ctlMP, ControladorOrdenPreventiva ctlOP, ControladorProgramasPreventivos ctlPP, ControladorTarea ctrlTareas, InicioPrograma2 prin) {
         setTitle("Programa de Mantenimiento Preventivo");
         setSize(450, 250);
@@ -33,19 +51,19 @@ public class VentanaPrincipalMantePreventivo extends JFrame {
         
         JButton btnSalir = new JButton("Salir");
         add(btnSalir);
-
+        // Abrir gestión de programas preventivos
         btnFases.addActionListener(e -> {
             new VentanaPrincipalProgramas(ctrlEquipos, ctrlTareas, ctlPP,prin).setVisible(true);
         }); //Opcion A
-
+        // Abrir gestión de tareas preventivas
         btnTareas.addActionListener(e -> {
             new VentanaPrincipalTareas(ctrlTareas,prin).setVisible(true);
         }); //Opcion B
-
+        // Abrir gestión de órdenes preventivas
         btnOrdenes.addActionListener(e -> {
             new VentanaPrincipalOrdenesPreventivas(ctlOP, ctlPP, ctrlEquipos, ctlFallas).setVisible(true);
         }); //Opcion C
-
+        // Volver al menú principal
         btnSalir.addActionListener(e -> {
             this.dispose();  
             prin.setVisible(true);

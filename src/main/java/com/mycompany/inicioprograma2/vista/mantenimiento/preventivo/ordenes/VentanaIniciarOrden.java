@@ -6,8 +6,23 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.Est
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana para iniciar una orden de mantenimiento preventivo.
+ * <p>
+ * Permite seleccionar una orden pendiente, establecer la fecha de inicio,
+ * y actualizar su estado a "en ejecución". Al confirmar, se guardan los cambios
+ * mediante el controlador correspondiente.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaIniciarOrden extends JFrame {
+    
+    /**
+     * Constructor que inicializa la ventana para iniciar una orden.
+     *
+     * @param controlador controlador encargado de gestionar las órdenes preventivas
+     */
     public VentanaIniciarOrden(ControladorOrdenPreventiva controlador) {
         setTitle("Iniciar Orden");
         setSize(350, 200);
@@ -34,7 +49,7 @@ public class VentanaIniciarOrden extends JFrame {
 
         add(btnIniciar);
         add(btnCerrar);
-
+        // Cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
 
         btnIniciar.addActionListener(e -> {

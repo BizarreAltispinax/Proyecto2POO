@@ -4,10 +4,7 @@
  */
 package com.mycompany.inicioprograma2.vista.equipos;
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
-/**
- *
- * @author Usuario
- */
+
 import com.mycompany.inicioprograma2.modelo.Equipos.EstadoEquipo;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
 import org.jfree.chart.ChartFactory;
@@ -18,8 +15,25 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-
+/**
+ * Ventana que genera y muestra un gráfico de barras con la cantidad de equipos
+ * según su estado actual. Utiliza JFreeChart para construir el gráfico.
+ *
+ * <p>
+ * Esta vista obtiene los datos desde {@link ControladorEquipo} y permite volver
+ * a la ventana principal {@link InicioPrograma2}.
+ * </p>
+ *
+ * @author Usuario
+ */
 public class GraficoEstado extends JFrame{
+     /**
+     * Constructor que genera la ventana del gráfico basada en los datos
+     * del controlador de equipos.
+     *
+     * @param controlador Controlador de equipos del cual se obtienen los estados y cantidades.
+     * @param prin Ventana principal a la cual se regresa al presionar "Salir".
+     */
     public GraficoEstado(ControladorEquipo controlador,InicioPrograma2 prin) {
 
        

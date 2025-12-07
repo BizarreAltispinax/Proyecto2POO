@@ -6,11 +6,17 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.TipoF
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
 import com.mycompany.inicioprograma2.modelo.Persistencia;
 import java.util.List;
-
+/**
+* Controlador para gestionar el programa de mantenimiento preventivo.
+* Se encarga de cargar, modificar y guardar las fases y sus tareas.
+*/
 public class ControladorMatenimientoPreventivo {
 
     private ProgramaMantenimientoPreventivo programa;
-
+    /**
+    * Constructor que carga el programa desde archivo.
+    * Si no existe, crea uno nuevo.
+    */
     public ControladorMatenimientoPreventivo() {
         this.programa = Persistencia.cargar2("data/mantenimientoPreventivo.dat");
 
@@ -25,7 +31,17 @@ public class ControladorMatenimientoPreventivo {
     public void guardar() {
         Persistencia.guardar2("data/mantenimientoPreventivo.dat", programa);
     }
-
+    /**
+    * Crea y agrega una nueva fase al programa.
+    * @param tipoFrecuencia tipo de frecuencia asignado
+    * @param medidorFrecuencia valor del medidor
+    * @param cantidadCiclos ciclos asociados
+    * @param partes partes involucradas
+    * @param herramientas herramientas necesarias
+    * @param personal personal requerido
+    * @param horasEstimadas horas estimadas de trabajo
+    * @return true si se agregó correctamente
+    */
     public boolean crearFase(TipoFrecuencia tipoFrecuencia, int medidorFrecuencia, int cantidadCiclos, String partes, String herramientas, String personal, float horasEstimadas) {
         try {
             Fase f = new Fase(tipoFrecuencia, medidorFrecuencia, cantidadCiclos, partes, herramientas, personal, horasEstimadas);

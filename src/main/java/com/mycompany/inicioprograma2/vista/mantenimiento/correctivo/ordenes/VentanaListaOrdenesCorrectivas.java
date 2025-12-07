@@ -4,9 +4,16 @@ import com.mycompany.inicioprograma2.controlador.ControladorOrdenCorrectiva;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana que muestra una lista de todas las órdenes correctivas registradas.
+ * Cada elemento incluye el ID de la orden, el ID del equipo y el estado actual.
+ */
 public class VentanaListaOrdenesCorrectivas extends JFrame {
-
+     /**
+     * Crea la ventana que lista todas las órdenes correctivas existentes.
+     *
+     * @param ctrlOrden controlador encargado de gestionar las órdenes correctivas
+     */
     public VentanaListaOrdenesCorrectivas(ControladorOrdenCorrectiva ctrlOrden) {
 
         setTitle("Lista de Órdenes Correctivas");
@@ -20,7 +27,7 @@ public class VentanaListaOrdenesCorrectivas extends JFrame {
             modelo.addElement("Orden " + o.getId() + " | Equipo " + o.getIdEquipo()
                     + " | Estado: " + o.getEstado());
         }
-
+        // Lista visual para mostrar las órdenes
         JList<String> lista = new JList<>(modelo);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -28,7 +35,7 @@ public class VentanaListaOrdenesCorrectivas extends JFrame {
 
         JButton btnCerrar = new JButton("Cerrar");
         add(btnCerrar, BorderLayout.SOUTH);
-
+        // Cierra la ventana
         btnCerrar.addActionListener(e -> dispose());
     }
 }

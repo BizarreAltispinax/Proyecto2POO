@@ -7,7 +7,15 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tare
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana para modificar una tarea existente de mantenimiento preventivo.
+ * <p>
+ * Permite al usuario validar el ID de la tarea a modificar, ingresar
+ * una nueva descripción y guardar los cambios a través del controlador.
+ * </p>
+ * 
+ * Autor: Usuario
+ */
 public class VentanaModificarTarea extends JFrame{
     private ControladorTarea controlador;
 
@@ -20,6 +28,11 @@ public class VentanaModificarTarea extends JFrame{
 
     private int idTareaModificar = -1;
 
+    /**
+     * Constructor que inicializa la ventana y sus componentes.
+     * 
+     * @param controlador Controlador de tareas para acceder a la lista de tareas y modificarlas
+     */
     public VentanaModificarTarea(ControladorTarea controlador) {
         this.controlador = controlador;
 

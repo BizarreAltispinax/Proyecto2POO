@@ -4,20 +4,29 @@
  */
 package com.mycompany.inicioprograma2.vista.equipos;
 
-/**
- *
- * @author Usuario
- */
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana que permite consultar la información de un equipo específico
+ * ingresando su ID. Muestra los datos obtenidos mediante el
+ * {@link ControladorEquipo} dentro de un área de texto.
+ *
+ * <p>
+ * La interfaz contiene un campo para ingresar el ID, un botón para consultar,
+ * y un botón para cerrar la ventana.
+ * </p>
+ */
 public class VentanaConsultarEquipo extends JFrame {
 
     private JTextArea area;
     private JTextField txtId;
-
+     /**
+     * Constructor que inicializa y configura la ventana para consultar un equipo.
+     *
+     * @param controlador Controlador encargado de procesar la consulta del equipo.
+     */
     public VentanaConsultarEquipo(ControladorEquipo controlador) {
 
         setTitle("Consultar Equipos");

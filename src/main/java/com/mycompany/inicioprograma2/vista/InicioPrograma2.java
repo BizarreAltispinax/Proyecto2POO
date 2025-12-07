@@ -11,11 +11,31 @@ import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalManteni
 import com.mycompany.inicioprograma2.controlador.*;
 import javax.swing.*;
 import java.awt.*;
+
 /**
+ * Ventana principal del sistema. Presenta el menú general desde el cual se
+ * accede a las secciones de Equipos, Reportes, Programas de Mantenimiento
+ * Preventivo, consultas en árbol y gráficos. Gestiona también el cierre
+ * ordenado de la aplicación.
+ *
+ * Esta clase utiliza el patrón MVC, recibiendo instancias de los controladores
+ * para ser enviadas a las ventanas hijas según corresponda.
  *
  * @author Usuario
  */
 public class InicioPrograma2 extends JFrame {
+     /**
+     * Constructor principal que inicializa la ventana del menú y configura
+     * los botones para navegar hacia las distintas vistas del sistema.
+     *
+     * @param ctlEquipos controlador para la gestión de equipos
+     * @param ctlFallas controlador para la gestión de fallas
+     * @param ctlMP controlador para la gestión de mantenimiento preventivo
+     * @param ctlOP controlador para las órdenes preventivas
+     * @param ctlOC controlador para las órdenes correctivas
+     * @param ctlPP controlador para los programas preventivos
+     * @param ctlTarea controlador para las tareas
+     */
     public InicioPrograma2(ControladorEquipo ctlEquipos, ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorOrdenCorrectiva ctlOC,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
         setTitle("Menú Principal");
         setSize(700, 400);

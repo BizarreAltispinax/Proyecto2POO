@@ -6,11 +6,26 @@ import com.mycompany.inicioprograma2.modelo.Equipos;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana para seleccionar un equipo y crear o gestionar su programa
+ * de mantenimiento preventivo.
+ * <p>
+ * Permite elegir un equipo de la lista de equipos registrados, crear
+ * un programa preventivo para dicho equipo o abrir la ventana de gestión
+ * de programa si ya existe.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaSeleccionEquipoPrograma extends JFrame {
     private final ControladorEquipo ctrlEquipos;
     private final ControladorProgramasPreventivos ctrlProgramas;
-
+    /**
+     * Constructor que inicializa la ventana con los controles necesarios.
+     *
+     * @param ctrlEquipos   Controlador de equipos
+     * @param ctrlProgramas Controlador de programas preventivos
+     */
     public VentanaSeleccionEquipoPrograma(ControladorEquipo ctrlEquipos, ControladorProgramasPreventivos ctrlProgramas) {
         this.ctrlEquipos = ctrlEquipos;
         this.ctrlProgramas = ctrlProgramas;
@@ -19,7 +34,7 @@ public class VentanaSeleccionEquipoPrograma extends JFrame {
         setSize(400, 200);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(3, 1, 10, 10));
-
+        // ComboBox con todos los equipos disponibles
         JComboBox<Equipos> comboEquipos = new JComboBox<>();
         for (Equipos e : ctrlEquipos.getEquipos()) comboEquipos.addItem(e);
 

@@ -5,10 +5,7 @@
 package com.mycompany.inicioprograma2.vista.equipos;
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
-/**
- *
- * @author Usuario
- */
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -17,8 +14,27 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-
+/**
+ * Ventana que genera un gráfico de barras que muestra la cantidad de equipos
+ * agrupados según su tipo. Los datos provienen del {@link ControladorEquipo}.
+ *
+ * <p>
+ * Esta vista se utiliza como representación gráfica para facilitar la
+ * visualización estadística de los tipos registrados en el sistema. Incluye un
+ * botón para volver a la ventana principal {@link InicioPrograma2}.
+ * </p>
+ *
+ * @author Usuario
+ */
 public class GraficoTipos extends JFrame{
+    
+    /**
+     * Constructor que crea la ventana y el gráfico basado en los datos de tipos
+     * de equipos obtenidos del controlador.
+     *
+     * @param controlador Controlador desde donde se obtiene el conteo por tipos.
+     * @param prin Ventana principal que se vuelve a mostrar al cerrar esta.
+     */
     public GraficoTipos(ControladorEquipo controlador,InicioPrograma2 prin) {
 
        

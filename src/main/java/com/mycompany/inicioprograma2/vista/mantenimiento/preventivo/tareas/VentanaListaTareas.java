@@ -6,8 +6,21 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tare
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
+/**
+ * Ventana para mostrar la lista de tareas de mantenimiento preventivo.
+ * <p>
+ * Presenta todas las tareas registradas en una tabla no editable con
+ * su ID y descripción.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaListaTareas extends JFrame {
+     /**
+     * Constructor que inicializa la ventana y muestra las tareas.
+     * 
+     * @param controlador Controlador de tareas para obtener la lista de tareas
+     */
     public VentanaListaTareas(ControladorTarea controlador) {
         setTitle("Lista de Tareas");
         setSize(300, 200);

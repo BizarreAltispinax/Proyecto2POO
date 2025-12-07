@@ -5,8 +5,19 @@
 package com.mycompany.inicioprograma2.controlador;
 
 /**
- *
- * @author Usuario
+ * Controlador encargado de gestionar las operaciones sobre los equipos:
+ * agregar, modificar, eliminar, generar reportes y cargar datos.
+ * Administra la lista de equipos y actúa como intermediario entre la vista
+ * y la capa de modelo.
+ * 
+ * Proporciona funciones para:
+ * <ul>
+ * <li>Búsqueda de equipos por ID</li>
+ * <li>Validación de datos</li>
+ * <li>Prevención de ciclos en jerarquías</li>
+ * <li>Carga de opciones desde archivos externos</li>
+ * <li>Generación de reportes PDF</li>
+ * </ul>
  */
 import com.mycompany.inicioprograma2.modelo.Equipos;
 import com.mycompany.inicioprograma2.modelo.Equipos.EstadoEquipo;
@@ -30,7 +41,10 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class ControladorEquipo {
     private String rutaArchivo;
     private final ArrayList<Equipos> equipos;
-
+     /**
+     * Constructor: carga los equipos almacenados y prepara la ruta para el archivo
+     * de opciones externas.
+     */
     public ControladorEquipo() {
         equipos = Persistencia.cargar("data/equipos.dat");
  
@@ -269,7 +283,9 @@ public class ControladorEquipo {
     public boolean eliminarEquipo(int id) {
         return equipos.removeIf(e -> e.getId() == id);
     }
-
+     /**
+     * Verifica si asignar un padre provocaría un ciclo en la jerarquía.
+     */
     private boolean creaCiclo(Equipos hijo, Equipos posiblePadre) {
         System.out.println("Hola4");
         Equipos actual = posiblePadre;
@@ -346,6 +362,11 @@ public class ControladorEquipo {
         generarPDF("reportes/Reporte_Equipo.pdf", sb.toString());
         
     }
+        
+       
+    /**
+     * Genera un archivo PDF usando iText.
+     */
 
        private void generarPDF(String nombreArchivo, String contenido) {
         Document document = new Document();
@@ -365,6 +386,10 @@ public class ControladorEquipo {
         }
     }
 
+       
+     /**
+     * Imprime recursivamente todos los componentes de un equipo.
+     */
         private void imprimirRecursivo(Equipos padre, StringBuilder sb, int nivel) {
 
         for (Equipos eq : equipos) {

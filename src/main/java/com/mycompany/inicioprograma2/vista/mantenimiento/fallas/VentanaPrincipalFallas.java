@@ -7,8 +7,20 @@ import com.mycompany.inicioprograma2.modelo.Equipos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ventana principal para la gestión de fallas de los equipos.
+ * Permite seleccionar un equipo y acceder a las opciones
+ * de registrar fallas nuevas o listar/modificar/eliminar fallas existentes.
+ *
+ * <p>Esta ventana funciona como menú principal del módulo de fallas.</p>
+ */
 public class VentanaPrincipalFallas extends JFrame {
-
+     /**
+     * Constructor de la ventana principal de fallas.
+     *
+     * @param ctrlEquipos        Controlador que gestiona los equipos registrados.
+     * @param controladorFalla   Controlador que gestiona las fallas de los equipos.
+     */
     public VentanaPrincipalFallas(ControladorEquipo ctrlEquipos, ControladorFalla controladorFalla) {
 
         setTitle("Gestión de Fallas");
@@ -54,7 +66,7 @@ public class VentanaPrincipalFallas extends JFrame {
 
             new VentanaListaFallas(controladorFalla, sel.getId()).setVisible(true);
         });
-
+        // Acción: cerrar la ventana
         btnCerrar.addActionListener(e -> dispose());
     }
 }

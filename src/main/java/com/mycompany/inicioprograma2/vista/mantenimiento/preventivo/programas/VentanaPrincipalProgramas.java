@@ -4,10 +4,6 @@
  */
 package com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.programas;
 
-/**
- *
- * @author Usuario
- */
 
 import com.mycompany.inicioprograma2.controlador.ControladorEquipo;
 import com.mycompany.inicioprograma2.controlador.ControladorProgramasPreventivos;
@@ -17,7 +13,15 @@ import com.mycompany.inicioprograma2.vista.InicioPrograma2;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana principal de gestión de programas de mantenimiento preventivo.
+ * <p>
+ * Permite activar programas para un equipo, crear fases, asignar tareas,
+ * modificar fases y consultar programas existentes.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaPrincipalProgramas extends JFrame {
     private final ControladorProgramasPreventivos ctrlProgramas;
     private final ControladorEquipo ctrlEquipos;
@@ -25,7 +29,14 @@ public class VentanaPrincipalProgramas extends JFrame {
 
     private JComboBox<Equipos> comboEquipos;
     private JButton btnCrearFase, btnAsignar, btnModificar, btnConsultar, btnSalir;
-
+     /**
+     * Constructor que inicializa la ventana principal con todos los botones y la lista de equipos.
+     *
+     * @param ctrlEquipos  Controlador de equipos
+     * @param ctrlTareas   Controlador de tareas
+     * @param ctrlProgramas Controlador de programas preventivos
+     * @param prin         Referencia a la ventana principal del programa (no usada directamente)
+     */
     public VentanaPrincipalProgramas(ControladorEquipo ctrlEquipos, ControladorTarea ctrlTareas, ControladorProgramasPreventivos ctrlProgramas,InicioPrograma2 prin) {
         this.ctrlEquipos = ctrlEquipos;
         this.ctrlTareas = ctrlTareas;
@@ -36,7 +47,7 @@ public class VentanaPrincipalProgramas extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(6, 1, 10, 10));
-
+        // ComboBox con los equipos disponibles
         comboEquipos = new JComboBox<>();
         for (Equipos eq : ctrlEquipos.getEquipos()) {
             comboEquipos.addItem(eq);
@@ -77,7 +88,10 @@ public class VentanaPrincipalProgramas extends JFrame {
         });
         
     }
-
+    /**
+     * Activa el programa preventivo para el equipo seleccionado
+     * y habilita los botones correspondientes.
+     */
     private void activarPrograma() {
         Equipos seleccionado = (Equipos) comboEquipos.getSelectedItem();
         if (seleccionado == null) {
@@ -96,22 +110,32 @@ public class VentanaPrincipalProgramas extends JFrame {
         JOptionPane.showMessageDialog(this,
                 "Programa del equipo habilitado: " + seleccionado.getDescripcion());
     }
-
+    
+    /**
+     * Abre la ventana para crear una fase en el programa del equipo seleccionado.
+     */
     private void abrirCrearFase() {
         Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
         new VentanaCrearFase(equipo.getId(), ctrlProgramas).setVisible(true);
     }
-
+     /**
+     * Abre la ventana para asignar tareas a una fase del equipo seleccionado.
+     */
     private void abrirAsignarTareas() {
         Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
         new VentanaAsignarTareasFase(equipo.getId(), ctrlProgramas, ctrlTareas, null).setVisible(true);
     }
-
+    /**
+     * Abre la ventana para modificar las fases del programa del equipo seleccionado.
+     */
     private void abrirModificarFases() {
         Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
         new VentanaListaFases(equipo.getId(), ctrlProgramas).setVisible(true);
     }
 
+    /**
+     * Abre la ventana para consultar el programa completo del equipo seleccionado.
+     */
     private void abrirCosultarPrograma() {
         Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
         new VentanaConsultaPrograma(equipo.getId(), ctrlProgramas).setVisible(true);

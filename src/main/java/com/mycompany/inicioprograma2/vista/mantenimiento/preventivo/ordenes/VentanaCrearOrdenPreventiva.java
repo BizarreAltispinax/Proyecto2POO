@@ -9,8 +9,22 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.fases.Fase;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana para la creación de una nueva orden de mantenimiento preventivo.
+ * <p>
+ * Permite seleccionar un equipo, escoger una de sus fases definidas en su
+ * programa preventivo y asignar una fecha. Tras validar la información,
+ * solicita al controlador la creación y persistencia de la orden.
+ * </p>
+ */
 public class VentanaCrearOrdenPreventiva extends JFrame {
+     /**
+     * Constructor que inicializa la interfaz para crear una orden preventiva.
+     *
+     * @param ctrlOrden     controlador encargado de gestionar las órdenes
+     * @param ctrlProgramas controlador que administra los programas preventivos y sus fases
+     * @param ctrlEquipos   controlador para obtener la lista de equipos existentes
+     */
     public VentanaCrearOrdenPreventiva(ControladorOrdenPreventiva ctrlOrden, ControladorProgramasPreventivos ctrlProgramas, ControladorEquipo ctrlEquipos) {
         setTitle("Crear Orden Preventiva");
         setSize(500, 300);
@@ -29,7 +43,9 @@ public class VentanaCrearOrdenPreventiva extends JFrame {
         for (Equipos eq : ctrlEquipos.getEquipos()) {
             comboEquipos.addItem(eq.getId() + " - " + eq.getDescripcion());
         }
-
+        // ------------------------------------------------------------
+        // Cuando se seleccione un equipo, cargar las fases de su programa
+        // ------------------------------------------------------------
         comboEquipos.addActionListener(e -> {
             comboFases.removeAllItems();
 
@@ -49,7 +65,9 @@ public class VentanaCrearOrdenPreventiva extends JFrame {
                 index++;
             }
         });
-
+        // ------------------------------------------------------------
+        // Armado de la interfaz
+        // ------------------------------------------------------------
         add(new JLabel("Equipo:"));
         add(comboEquipos);
 
@@ -61,9 +79,11 @@ public class VentanaCrearOrdenPreventiva extends JFrame {
 
         add(btnCrear);
         add(btnCerrar);
-
+        // Cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // ------------------------------------------------------------
+        // Crear orden preventiva
+        // ------------------------------------------------------------
         btnCrear.addActionListener(e -> {
             try {
                 int idEquipo = Integer.parseInt(comboEquipos.getSelectedItem().toString().split(" - ")[0]);

@@ -8,8 +8,24 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tare
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Ventana para asignar tareas a una fase de un programa de mantenimiento preventivo.
+ * <p>
+ * Permite seleccionar una fase y una tarea, y asignar la tarea a la fase correspondiente.
+ * Después de asignar, actualiza la ventana padre que lista las fases.
+ * </p>
+ * 
+ * @author Usuario
+ */
 public class VentanaAsignarTareasFase extends JFrame {
+     /**
+     * Constructor de la ventana para asignar tareas a una fase.
+     *
+     * @param idEquipo        ID del equipo al que pertenece la fase
+     * @param controladorProg Controlador de programas preventivos
+     * @param controladorTarea Controlador de tareas
+     * @param ventanaPadre    Ventana que lista las fases (para refrescar después de asignar)
+     */
     public VentanaAsignarTareasFase(int idEquipo, ControladorProgramasPreventivos controladorProg, ControladorTarea controladorTarea, VentanaListaFases ventanaPadre) {
         setTitle("Asignar Tareas a Fase");
         setSize(500, 300);
@@ -29,7 +45,7 @@ public class VentanaAsignarTareasFase extends JFrame {
         for (Tarea t : controladorTarea.getTareas()) {
             comboTareas.addItem(t.getId() + " - " + t.getDescripcion());
         }
-
+        // Botones
         JButton btnAsignar = new JButton("Asignar Tarea");
         JButton btnCerrar = new JButton("Cerrar");
 
@@ -40,9 +56,9 @@ public class VentanaAsignarTareasFase extends JFrame {
         add(comboTareas);
         add(btnAsignar);
         add(btnCerrar);
-
+        // Acción de cerrar ventana
         btnCerrar.addActionListener(e -> dispose());
-
+        // Acción de asignar tarea a la fase seleccionada
         btnAsignar.addActionListener(e -> {
             int indiceFase = comboFases.getSelectedIndex();
             int indiceTarea = comboTareas.getSelectedIndex();

@@ -4,11 +4,20 @@ import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.fallas.Falla;
 
 import java.util.ArrayList;
-
+/**
+ * Controlador encargado de gestionar las fallas asociadas a los equipos.
+ * Permite agregar, modificar, eliminar y consultar fallas.
+ *
+ * Las fallas se almacenan en un archivo binario mediante la clase {@link Persistencia}.
+ * Cada falla está asociada a un ID de equipo y posee un ID propio.
+ */
 public class ControladorFalla {
 
     private final ArrayList<Falla> fallas;
-
+        /**
+     * Constructor: carga la lista de fallas desde el archivo de persistencia.
+     * Si el archivo no existe o está vacío, la lista cargada será una lista vacía.
+     */
     public ControladorFalla() {
         fallas = Persistencia.cargar("data/fallas.dat");
     }

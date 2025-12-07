@@ -9,8 +9,25 @@ import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes.Ord
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-
+/**
+ * Ventana para finalizar una orden de trabajo preventiva.
+ * <p>
+ * Permite seleccionar una orden en ejecución, registrar la fecha de finalización,
+ * horas trabajadas, costos, observaciones y fallas detectadas durante su ejecución.
+ * Utiliza una ventana modal para agregar fallas detectadas. Al finalizar, actualiza
+ * el estado de la orden y guarda los cambios mediante el controlador.
+ * </p>
+ *
+ * @author Usuario
+ */
 public class VentanaFinalizarOrden extends JFrame {
+    
+    /**
+     * Constructor que inicializa la ventana para finalizar una orden preventiva.
+     *
+     * @param ctrlOrden  controlador encargado de gestionar las órdenes preventivas
+     * @param ctrlFallas controlador encargado de gestionar las fallas
+     */
     public VentanaFinalizarOrden(ControladorOrdenPreventiva ctrlOrden, ControladorFalla ctrlFallas) {
         setTitle("Finalizar Orden");
         setSize(450, 350);
@@ -36,7 +53,7 @@ public class VentanaFinalizarOrden extends JFrame {
         JButton btnCerrar = new JButton("Cerrar");
 
         java.util.List<HistorialFallas> fallasTemporal = new java.util.ArrayList<>();
-
+        //Se añaden las partes visuales
         add(new JLabel("Orden en ejecución"));
         add(combo);
 
@@ -59,7 +76,7 @@ public class VentanaFinalizarOrden extends JFrame {
         add(btnFinalizar);
 
         add(btnCerrar);
-
+        // Cierra ventana
         btnCerrar.addActionListener(e -> dispose());
 
         btnFallas.addActionListener(e -> {

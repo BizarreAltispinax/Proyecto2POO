@@ -14,10 +14,38 @@ import com.mycompany.inicioprograma2.modelo.Equipos;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
 
 /**
+ * Ventana que permite consultar la estructura jerárquica de equipos
+ * en forma de árbol (subequipos y equipos padre). Además, permite 
+ * buscar un equipo por su ID y generar dinámicamente el árbol a partir 
+ * de dicho equipo como raíz.
+ *
+ * Esta herramienta facilita la visualización de dependencias entre 
+ * equipos y muestra en un panel lateral los detalles del equipo 
+ * seleccionado dentro del árbol.
+ *
+ * Funcionalidades principales:
+ * <ul>
+ *   <li>Búsqueda de equipos por ID</li>
+ *   <li>Construcción de árbol dinámico según el equipo seleccionado</li>
+ *   <li>Visualización de los detalles de cada equipo</li>
+ *   <li>Listado de subequipos pertenecientes al nodo elegido</li>
+ *   <li>Regreso a la ventana principal del sistema</li>
+ * </ul>
+ *
+ * Esta clase sigue el esquema MVC utilizando el controlador de equipos
+ * para extraer la información y construir la jerarquía correspondiente.
  *
  * @author Usuario
  */
 public class ConsultaArbol extends JFrame{
+        /**
+     * Crea la ventana de consulta con árbol de equipos. Recibe el 
+     * controlador para gestionar la información y la ventana principal
+     * para volver a ella al cerrar esta vista.
+     *
+     * @param controlador controlador encargado de gestionar los equipos
+     * @param prin ventana principal para regresar al menú inicial
+     */
     public ConsultaArbol(ControladorEquipo controlador, InicioPrograma2 prin){
 
         // Campo y botón de búsqueda

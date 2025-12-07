@@ -8,10 +8,20 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * Controlador encargado de gestionar la creación, modificación,
+ * eliminación y carga visual de tareas de mantenimiento preventivo.
+ * <p>
+ * Las tareas se manejan en memoria y se almacenan en un archivo .dat
+ * mediante la clase {@link Persistencia}.
+ */
 public class ControladorTarea {
     private final ArrayList<Tarea> tareas;
-
+     /**
+     * Constructor: carga la lista de tareas desde archivo.
+     * Si el archivo no existe o está vacío, la lista será null
+     * y eso deberá manejarse externamente si fuera necesario.
+     */
     public ControladorTarea() {
         tareas = Persistencia.cargar("data/tareas.dat");
     }
@@ -48,7 +58,7 @@ public class ControladorTarea {
 
         return id;
     }
-
+    //Agrega tareas
     public boolean agregarTarea(String descripcion) {
         if (descripcion == null || descripcion.isBlank()) return false;
 
@@ -59,7 +69,7 @@ public class ControladorTarea {
 
         return true;
     }
-
+    //Modifica tareas
     public boolean modificarTarea(int id, String descripcion) {
         Tarea t = buscarPorId(id);
         if (t == null) return false;
@@ -68,7 +78,7 @@ public class ControladorTarea {
         t.setDescripcion(descripcion);
         return true;
     }
-
+    //Elimina tareas
     public boolean eliminarTarea(int id) {
         return tareas.removeIf(t -> t.getId() == id);
     }
