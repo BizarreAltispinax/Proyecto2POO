@@ -16,7 +16,7 @@ public class ControladorProgramasPreventivos {
     private final ControladorEquipo ctrlEquipos;
 
     public ControladorProgramasPreventivos(ControladorEquipo ctrlEquipos) {
-        ControladorEquipo cargado = Persistencia.cargar3("controladorEquipos.dat");
+        ControladorEquipo cargado = Persistencia.cargar3("controlador.dat");
 
         // ---------- 2. Si existe, usar el cargado ----------
         if (cargado != null) {
@@ -35,7 +35,7 @@ public class ControladorProgramasPreventivos {
     }
     public void guardar() {
         Persistencia.guardar3("programasPreventivos.dat", programas);
-        Persistencia.guardar3("controladorEquipos.dat", ctrlEquipos);
+        Persistencia.guardar3("controlador.dat", ctrlEquipos);
     }
     public boolean crearProgramaParaEquipo(int idEquipo) {
         Equipos eq = ctrlEquipos.buscarPorId(idEquipo);
