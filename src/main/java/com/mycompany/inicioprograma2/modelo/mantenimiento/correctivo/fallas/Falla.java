@@ -3,18 +3,19 @@ package com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas;
 import java.io.Serializable;
 
 public class Falla implements Serializable {
-    private int contador = 1;
 
-    private final int id;
+    private int idEquipo;
+    private int id;
     private String descripcion;
-    private String tipo;        // eléctrico, mecánico, software, etc.
-    private String criticidad;  // baja, media, alta
 
-    public Falla(String descripcion, String tipo, String criticidad) {
-        this.id = contador++;
+    public Falla(int idEquipo, int id, String descripcion) {
+        this.idEquipo = idEquipo;
+        this.id = id;
         this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.criticidad = criticidad;
+    }
+
+    public int getIdEquipo() {
+        return idEquipo;
     }
 
     public int getId() {
@@ -27,29 +28,5 @@ public class Falla implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getCriticidad() {
-        return criticidad;
-    }
-
-    public void setCriticidad(String criticidad) {
-        this.criticidad = criticidad;
-    }
-
-    @Override
-    public String toString() {
-        return "ID: " + id + "\n" +
-                "Descripcion: '" + descripcion + '\n' +
-                "Tipo='" + tipo + '\n' +
-                "Criticidad='" + criticidad;
     }
 }

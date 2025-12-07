@@ -12,14 +12,13 @@ import javax.swing.tree.*;
 import java.awt.BorderLayout;
 import com.mycompany.inicioprograma2.modelo.Equipos;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
-import java.awt.GridLayout;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
  * @author Usuario
  */
-public class ConultaArbol extends JFrame{
-    public ConultaArbol(ControladorEquipo controlador,InicioPrograma2 prin){
+public class ConsultaArbol extends JFrame{
+    public ConsultaArbol(ControladorEquipo controlador, InicioPrograma2 prin){
 
 
                 // Campo y botón de búsqueda

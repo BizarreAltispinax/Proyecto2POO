@@ -2,74 +2,64 @@ package com.mycompany.inicioprograma2.controlador;
 
 import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas.Falla;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class ControladorFalla {
+
     private final ArrayList<Falla> fallas;
 
     public ControladorFalla() {
         fallas = Persistencia.cargar("fallas.dat");
     }
 
-    public ArrayList<Falla> getFallas() {
-        return fallas;
+    public ArrayList<Falla> getFallasEquipo(int idEquipo) {
+        ArrayList<Falla> lista = new ArrayList<>();
+        for (Falla f : fallas) {
+            if (f.getIdEquipo() == idEquipo) lista.add(f);
+        }
+        return lista;
     }
 
-    public Falla buscarPorId(int id) {
+    public Falla buscarFalla(int idEquipo, int idFalla) {
         for (Falla f : fallas) {
-            if (f.getId() == id) return f;
+            if (f.getIdEquipo() == idEquipo && f.getId() == idFalla)
+                return f;
         }
         return null;
     }
-    public void guardar() {
-        Persistencia.guardar("fallas.dat", fallas);
-    }
-    public boolean agregarFalla(String descripcion, String tipo, String criticidad) {
+
+    public boolean agregarFalla(int idEquipo, int idFalla, String descripcion) {
+
+        // validar ID única por equipo
+        if (buscarFalla(idEquipo, idFalla) != null) return false;
+
         if (descripcion == null || descripcion.isBlank()) return false;
-        if (tipo == null || tipo.isBlank()) return false;
-        if (criticidad == null || criticidad.isBlank()) return false;
 
-        Falla nueva = new Falla(descripcion, tipo, criticidad);
-        fallas.add(nueva);
-
+        fallas.add(new Falla(idEquipo, idFalla, descripcion));
         return true;
     }
 
-    public boolean modificarFalla(int id, String descripcion, String tipo, String criticidad) {
-        Falla f = buscarPorId(id);
+    public boolean modificarFalla(int idEquipo, int idFalla, String nuevaDescripcion) {
+
+        Falla f = buscarFalla(idEquipo, idFalla);
         if (f == null) return false;
 
-        try {
-            if (descripcion == null || descripcion.isBlank())
-                throw new IllegalArgumentException("La descripcion no puede estar vacia");
-
-            if (tipo == null || tipo.isBlank())
-                throw new IllegalArgumentException("El tipo no puede estar vacio");
-
-            if (criticidad == null || criticidad.isBlank())
-                throw new IllegalArgumentException("Debe asignarle la criticidad");
-
-            f.setDescripcion(descripcion);
-            f.setTipo(tipo);
-            f.setCriticidad(criticidad);
-
-            return true;
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (nuevaDescripcion == null || nuevaDescripcion.isBlank())
             return false;
-        }
 
+        f.setDescripcion(nuevaDescripcion);
+        return true;
     }
 
-    public boolean eliminarFalla(int id) {
-        return fallas.removeIf(f -> f.getId() == id);
+    public boolean eliminarFalla(int idEquipo, int idFalla) {
+        return fallas.removeIf(f ->
+                f.getIdEquipo() == idEquipo && f.getId() == idFalla
+        );
     }
 
-    public void cargarFallasEn(JComboBox<String> combo) {
-        combo.removeAllItems();
-        for (Falla f : fallas) {
-            combo.addItem(f.getId() + " - " + f.getDescripcion());
-        }
+    public void guardar() {
+        Persistencia.guardar("fallas.dat", fallas);
     }
 }

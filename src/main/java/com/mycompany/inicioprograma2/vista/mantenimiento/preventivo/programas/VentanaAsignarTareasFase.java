@@ -18,7 +18,7 @@ public class VentanaAsignarTareasFase extends JFrame {
 
         //Combo de fases
         JComboBox<String> comboFases = new JComboBox<>();
-        int index = 0;
+        int index = 1;
         for (Fase f : controladorProg.getFases(idEquipo)) {
             comboFases.addItem("Fase " + index + " - " +
                     f.getTipoFrecuencia() + " (" + f.getTareas().size() + " tareas)");
