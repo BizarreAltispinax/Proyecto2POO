@@ -12,11 +12,11 @@ com\mycompany\inicioprograma2\vista\equipos\VentanaPrincipalEquipos.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\ordenes\VentanaModificarOrdenPreventiva.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\programas\VentanaAsignarTareasFase.class
 com\mycompany\inicioprograma2\modelo\Persistencia.class
-com\mycompany\inicioprograma2\vista\equipos\ConultaArbol.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\ordenes\VentanaConsultarOrdenPreventiva.class
 com\mycompany\inicioprograma2\vista\equipos\ReportesEquipos.class
 com\mycompany\inicioprograma2\vista\equipos\VentanaCrearEquipo.class
 com\mycompany\inicioprograma2\vista\Reportes.class
+com\mycompany\inicioprograma2\vista\equipos\ConsultaArbol.class
 com\mycompany\inicioprograma2\vista\equipos\VentanaModificarEquipo.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\tareas\VentanaModificarTarea.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\VentanaPrincipalMantePreventivo.class
@@ -30,7 +30,6 @@ com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\ordenes\VentanaGene
 com\mycompany\inicioprograma2\modelo\mantenimiento\preventivo\ordenes\OrdenTrabajoPreventivo.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\programas\VentanaGestionPrograma.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\programas\VentanaListaFases.class
-com\mycompany\inicioprograma2\modelo\mantenimiento\correctivo\fallas\RepositorioFallas.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\tareas\VentanaListaTareas$1.class
 com\mycompany\inicioprograma2\modelo\Equipos$EstadoEquipo.class
 com\mycompany\inicioprograma2\vista\mantenimiento\preventivo\programas\VentanaPrincipalProgramas.class
