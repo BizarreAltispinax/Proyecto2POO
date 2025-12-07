@@ -1,9 +1,8 @@
 package com.mycompany.inicioprograma2.controlador;
 
 import com.mycompany.inicioprograma2.modelo.Persistencia;
-import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas.Falla;
+import com.mycompany.inicioprograma2.modelo.mantenimiento.fallas.Falla;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class ControladorFalla {
@@ -28,6 +27,10 @@ public class ControladorFalla {
                 return f;
         }
         return null;
+    }
+
+    public void guardar() {
+        Persistencia.guardar("fallas.dat", fallas);
     }
 
     public boolean agregarFalla(int idEquipo, int idFalla, String descripcion) {
@@ -57,9 +60,5 @@ public class ControladorFalla {
         return fallas.removeIf(f ->
                 f.getIdEquipo() == idEquipo && f.getId() == idFalla
         );
-    }
-
-    public void guardar() {
-        Persistencia.guardar("fallas.dat", fallas);
     }
 }

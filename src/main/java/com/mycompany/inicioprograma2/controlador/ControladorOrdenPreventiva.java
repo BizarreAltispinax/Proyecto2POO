@@ -9,10 +9,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ControladorOrdenPreventiva {
+    ControladorEquipo controladorEquipo = new ControladorEquipo();
     private final ArrayList<OrdenTrabajoPreventivo> ordenes;
 
     public ControladorOrdenPreventiva() {
-                ordenes = Persistencia.cargar("ordenes.dat");
+        ordenes = Persistencia.cargar("ordenesPreventivas.dat");
+        actualizarContador();
+    }
+
+    private void actualizarContador() {
+        int max = 0;
+        for (OrdenTrabajoPreventivo o : ordenes) {
+            if (o.getId() > max) max = o.getId();
+        }
+        OrdenTrabajoPreventivo.setContador(max + 1);
     }
 
     public ArrayList<OrdenTrabajoPreventivo> getOrdenes() {
@@ -27,12 +37,16 @@ public class ControladorOrdenPreventiva {
         return null;
     }
     public void guardar() {
-        Persistencia.guardar("ordenes.dat", ordenes);
+        Persistencia.guardar("ordenesPreventivas.dat", ordenes);
     }
+
     public boolean crearOrden(int equipoId, int faseIndex, LocalDate fechaProgramada) {
+        faseIndex = faseIndex+1;
         if (equipoId <= 0) return false;
         if (faseIndex < 0) return false;
         if (fechaProgramada == null) return false;
+        if (controladorEquipo.buscarPorId(equipoId) == null)
+            return false;
 
         OrdenTrabajoPreventivo o = new OrdenTrabajoPreventivo(equipoId, faseIndex, fechaProgramada);
         ordenes.add(o);
@@ -65,7 +79,8 @@ public class ControladorOrdenPreventiva {
         OrdenTrabajoPreventivo o = buscarPorId(id);
 
         if (o == null) return false;
-        if (o.getEstado() != EstadoOrden.TERMINADA) return false;
+        if (o.getEstado() == EstadoOrden.TERMINADA) return false;
+        if (o.getEstado() == EstadoOrden.CANCELADA) return false;
 
         o.cancelarOrden(fechaCancelacion, razon);
 

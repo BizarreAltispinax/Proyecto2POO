@@ -41,6 +41,10 @@ public class OrdenTrabajoPreventivo implements Serializable {
         this.fallasObservadas = new ArrayList<>();
     }
 
+    public static void setContador(int valor) {
+        contador = valor;
+    }
+
     public int getId() {
         return id;
     }

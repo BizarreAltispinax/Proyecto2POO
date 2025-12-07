@@ -40,6 +40,7 @@ public class ControladorEquipo {
     public ArrayList<Equipos> getEquipos() {
         return equipos;
     }
+
     public void guardar() {
         Persistencia.guardar("equipos.dat", equipos);
     }
@@ -52,6 +53,24 @@ public class ControladorEquipo {
         return null;
     }
 
+    //Impide que hayan "huecos" en los IDs
+    private int obtenerIdLibre() {
+        int id = 1;
+
+        // crear un set de IDs usados
+        Set<Integer> usados = new HashSet<>();
+        for (Equipos e : equipos) {
+            usados.add(e.getId());
+        }
+
+        // seguir aumentando mientras el ID exista
+        while (usados.contains(id)) {
+            id++;
+        }
+
+        return id;
+    }
+
     public boolean agregarEquipo(String descripcion, String tipo, String ubicacion, String fabricante,
                                  String serie, LocalDate fechaAdquisicion, LocalDate fechaPuestaServicio,
                                  int mesesVidaUtil, Equipos.EstadoEquipo estado, double costoInicial,
@@ -60,7 +79,9 @@ public class ControladorEquipo {
         if (mesesVidaUtil <= 0 || costoInicial <= 0) return false;
         if (fechaPuestaServicio != null && fechaPuestaServicio.isBefore(fechaAdquisicion)) return false;
 
-        Equipos nuevo = new Equipos(descripcion, tipo, ubicacion, fabricante, serie, fechaAdquisicion,
+        int idAsignado = obtenerIdLibre();
+
+        Equipos nuevo = new Equipos(idAsignado, descripcion, tipo, ubicacion, fabricante, serie, fechaAdquisicion,
                 fechaPuestaServicio, mesesVidaUtil, estado, costoInicial, especificaciones, garantia, equipoPadre);
 
         equipos.add(nuevo);
@@ -248,12 +269,7 @@ public class ControladorEquipo {
     public boolean eliminarEquipo(int id) {
         return equipos.removeIf(e -> e.getId() == id);
     }
-    
-    
-    
-    
-    
-    
+
     private boolean creaCiclo(Equipos hijo, Equipos posiblePadre) {
         System.out.println("Hola4");
         Equipos actual = posiblePadre;
@@ -305,8 +321,7 @@ public class ControladorEquipo {
         generarPDF("Reporte_Equipo.pdf", sb.toString());
         
     }
-    
-    
+
     public void ReporteEquipoCon(int id) {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
@@ -326,53 +341,48 @@ public class ControladorEquipo {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             sb.append(e.toString()); 
-            sb.append("\n Componentes de los que esta conformado: ");
+            sb.append("\nComponentes de los que esta conformado: ");
             sb.append("\n");
             imprimirRecursivo(e, sb, 0);
+            sb.append("\n");
         }
         generarPDF("Reporte_Equipo.pdf", sb.toString());
         
     }
-    
 
-   private void generarPDF(String nombreArchivo, String contenido) {
-    Document document = new Document();
+       private void generarPDF(String nombreArchivo, String contenido) {
+        Document document = new Document();
 
-    try {
-        PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
-        document.open();
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
+            document.open();
 
-        // Agregar contenido del StringBuilder como párrafo
-        document.add(new Paragraph(contenido));
+            // Agregar contenido del StringBuilder como párrafo
+            document.add(new Paragraph(contenido));
 
-        document.close();
-        System.out.println("PDF generado: " + nombreArchivo);
+            document.close();
+            System.out.println("PDF generado: " + nombreArchivo);
 
-    } catch (DocumentException | IOException e) {
-        e.printStackTrace();
-    }
-}
-    
-    
-    private void imprimirRecursivo(Equipos padre, StringBuilder sb, int nivel) {
-
-    for (Equipos eq : equipos) {
-        
-        if (EquiposPadreObj(eq.getEquipoPadre()) != null && EquiposPadreObj(eq.getEquipoPadre()).equals(padre)) {
-
-            // Sangría según nivel
-            sb.append("   ".repeat(nivel));
-
-            // Agregar equipo
-            sb.append("- ").append(eq.getId()).append(" | ").append(eq.getDescripcion()).append("\n");
-
-            // Llamada recursiva aumentando el nivel
-            imprimirRecursivo(eq, sb, nivel + 1);
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
         }
     }
-}
-    
-    
-    
-    
+
+        private void imprimirRecursivo(Equipos padre, StringBuilder sb, int nivel) {
+
+        for (Equipos eq : equipos) {
+
+            if (EquiposPadreObj(eq.getEquipoPadre()) != null && EquiposPadreObj(eq.getEquipoPadre()).equals(padre)) {
+
+                // Sangría según nivel
+                sb.append("   ".repeat(nivel));
+
+                // Agregar equipo
+                sb.append("- ").append(eq.getId()).append(" | ").append(eq.getDescripcion()).append("\n");
+
+                // Llamada recursiva aumentando el nivel
+                imprimirRecursivo(eq, sb, nivel + 1);
+            }
+        }
+    }
 }

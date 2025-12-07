@@ -12,9 +12,7 @@ import java.time.LocalDate;
  */
 public class Equipos implements Serializable {
 
-    private static int contador = 1;
-
-    private final int id;
+    private int id;
     private String descripcion;
     private String tipo;
     private String ubicacion;
@@ -38,12 +36,12 @@ public class Equipos implements Serializable {
         DESECHADO
     }
 
-    public Equipos(String descripcion, String tipo, String ubicacion, String fabricante,
+    public Equipos(int id, String descripcion, String tipo, String ubicacion, String fabricante,
                   String serie, LocalDate fechaAdquisicion, LocalDate fechaPuestaServicio,
                   int mesesVidaUtil, EstadoEquipo estado, double costoInicial,
                   String especificaciones, String garantia, int equipoPadre) {
 
-        this.id = contador++;
+        this.id = id;
 
         this.descripcion = descripcion;
         this.tipo = tipo;
@@ -62,6 +60,10 @@ public class Equipos implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescripcion() {
@@ -174,22 +176,30 @@ public class Equipos implements Serializable {
         this.equipoPadre = equipoPadre;
     }
 
+//    @Override
+//    public String toString() {
+//    return "ID: " + id + "\n" +
+//           "Descripción: " + descripcion + "\n" +
+//           "Tipo: " + tipo + "\n" +
+//           "Ubicación: " + ubicacion + "\n" +
+//           "Fabricante: " + fabricante + "\n" +
+//           "Serie: " + serie + "\n" +
+//           "Fecha de adquisición: " + fechaAdquisicion + "\n" +
+//           "Fecha de puesta en servicio: " + fechaPuestaServicio + "\n" +
+//           "Meses de vida útil: " + mesesVidaUtil + "\n" +
+//           "Estado: " + estado + "\n" +
+//           "Costo inicial: " + costoInicial + "\n" +
+//           "Especificaciones: " + especificaciones + "\n" +
+//           "Garantía: " + garantia + "\n" +
+//           "Equipo padre: " + equipoPadre;
+//
+//    }
+
     @Override
     public String toString() {
-    return "ID: " + id + "\n" +
-           "Descripción: " + descripcion + "\n" +
-           "Tipo: " + tipo + "\n" +
-           "Ubicación: " + ubicacion + "\n" +
-           "Fabricante: " + fabricante + "\n" +
-           "Serie: " + serie + "\n" +
-           "Fecha de adquisición: " + fechaAdquisicion + "\n" +
-           "Fecha de puesta en servicio: " + fechaPuestaServicio + "\n" +
-           "Meses de vida útil: " + mesesVidaUtil + "\n" +
-           "Estado: " + estado + "\n" +
-           "Costo inicial: " + costoInicial + "\n" +
-           "Especificaciones: " + especificaciones + "\n" +
-           "Garantía: " + garantia + "\n" +
-           "Equipo padre: " + equipoPadre;
-
+        return "Equipo " + id +
+                "   Fabricante: " + fabricante +
+                "   Tipo: " + tipo +
+                "   Serie: " + serie;
     }
 }

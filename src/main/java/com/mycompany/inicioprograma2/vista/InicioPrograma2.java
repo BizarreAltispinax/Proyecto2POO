@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class InicioPrograma2 extends JFrame {
 
-    public InicioPrograma2(ControladorEquipo ctlEquipos, ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
+    public InicioPrograma2(ControladorEquipo ctlEquipos, ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorOrdenCorrectiva ctlOC,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
         setTitle("Menú Principal");
         setSize(700, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,17 +33,17 @@ public class InicioPrograma2 extends JFrame {
         JButton btnMantePreventivo = new JButton("Programas de Mantenimiento");
         add(btnMantePreventivo);
         
-        JButton btnConsultarArbol = new JButton("Consultar en estilo Arbol");
+        JButton btnConsultarArbol = new JButton("Consulta Estilo Árbol");
         add(btnConsultarArbol);
+        
+        JButton btnGraficos1 = new JButton("Gráficos 1");
+        add(btnGraficos1);
+        
+        JButton btnGraficos2 = new JButton("Gráficos 2");
+        add(btnGraficos2);
 
         JButton btnSalir = new JButton("Salir");
         add(btnSalir);
-        
-        JButton btnGraficos1 = new JButton("Graficos1");
-        add(btnGraficos1);
-        
-        JButton btnGraficos2 = new JButton("Graficos2");
-        add(btnGraficos2);
 
         btnEquipos.addActionListener(e -> {
             new VentanaPrincipalEquipos(ctlEquipos,this).setVisible(true);
@@ -54,7 +54,7 @@ public class InicioPrograma2 extends JFrame {
             this.setVisible(false);  //Opcion B
         });
         btnMantePreventivo.addActionListener(e -> {
-            new VentanaPrincipalMantenimiento(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlPP,ctlTarea,this).setVisible(true);
+            new VentanaPrincipalMantenimiento(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlOC,ctlPP,ctlTarea,this).setVisible(true);
             this.setVisible(false);  //Opcion C
         });
         
@@ -81,9 +81,10 @@ public class InicioPrograma2 extends JFrame {
         ControladorFalla ctlPersonas = new ControladorFalla();
         ControladorMatenimientoPreventivo ctlUsuarios = new ControladorMatenimientoPreventivo();
         ControladorOrdenPreventiva ctlProductos = new ControladorOrdenPreventiva();
+        ControladorOrdenCorrectiva ctlCorrecciones = new ControladorOrdenCorrectiva();
         ControladorProgramasPreventivos ctlPedidos = new ControladorProgramasPreventivos(ctlEquipos);
         ControladorTarea ctlPedido = new ControladorTarea();
-        SwingUtilities.invokeLater(() -> new InicioPrograma2(ctlEquipos,ctlPersonas,ctlUsuarios,ctlProductos,ctlPedidos,ctlPedido).setVisible(true));
+        SwingUtilities.invokeLater(() -> new InicioPrograma2(ctlEquipos,ctlPersonas,ctlUsuarios,ctlProductos,ctlCorrecciones,ctlPedidos,ctlPedido).setVisible(true));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             ctlEquipos.guardar();
             ctlPersonas.guardar();

@@ -1,50 +1,32 @@
 package com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.ordenes;
 
-import com.mycompany.inicioprograma2.modelo.mantenimiento.correctivo.fallas.Falla;
-
 import java.io.Serializable;
 
 public class HistorialFallas implements Serializable {
-    private Falla falla;
+    private int idFalla;
     private String causas;
     private String accionesTomadas;
 
-    public HistorialFallas(Falla falla, String causas, String accionesTomadas) {
-        this.falla = falla;
+    public HistorialFallas(int idFalla, String causas, String accionesTomadas) {
+        this.idFalla = idFalla;
         this.causas = causas;
         this.accionesTomadas = accionesTomadas;
     }
 
-    public Falla getFalla() {
-        return falla;
-    }
+    public int getIdFalla() { return idFalla; }
 
-    /*
-    public void setFalla(Falla falla) {
-        this.falla = falla;
-    }
-    */
+    public String getCausas() { return causas; }
 
-    public String getCausas() {
-        return causas;
-    }
+    public void setCausas(String causas) { this.causas = causas; }
 
-    public void setCausas(String causas) {
-        this.causas = causas;
-    }
+    public String getAccionesTomadas() { return accionesTomadas; }
 
-    public String getAccionesTomadas() {
-        return accionesTomadas;
-    }
-
-    public void setAccionesTomadas(String accionesTomadas) {
-        this.accionesTomadas = accionesTomadas;
-    }
+    public void setAccionesTomadas(String accionesTomadas) { this.accionesTomadas = accionesTomadas; }
 
     @Override
     public String toString() {
-        return "Falla: " + falla.getDescripcion() +
-                " | Causas: " + causas +
-                " | Actions: " + accionesTomadas;
+        return "Falla ID: " + idFalla +
+                "   Causas: " + causas +
+                "   Acciones: " + accionesTomadas;
     }
 }

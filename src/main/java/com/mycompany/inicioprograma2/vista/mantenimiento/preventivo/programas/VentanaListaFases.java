@@ -19,7 +19,7 @@ public class VentanaListaFases extends JFrame {
         this.idEquipo = idEquipo;
         this.controlador = controlador;
 
-        setTitle("Eliminar Fase");
+        setTitle("Modificar Fase");
         setSize(800, 300);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -27,6 +27,7 @@ public class VentanaListaFases extends JFrame {
         //Tabla no editable
         modelo = new DefaultTableModel(
                 new Object[]{
+                        "Fase",
                         "Tipo de Frecuencia",
                         "Medidor de Frecuencia",
                         "Cantidad de Ciclos",
@@ -73,8 +74,11 @@ public class VentanaListaFases extends JFrame {
         modelo.setRowCount(0);
         List<Fase> fases = controlador.getFases(idEquipo);
 
+        int index = 1;
         for (Fase f : fases) {
+
             modelo.addRow(new Object[] {
+                    index++,
                     f.getTipoFrecuencia(),
                     f.getMedidorFrecuencia(),
                     f.getCantidadCiclos(),

@@ -16,16 +16,17 @@ public class ControladorProgramasPreventivos {
     private final ControladorEquipo ctrlEquipos;
 
     public ControladorProgramasPreventivos(ControladorEquipo ctrlEquipos) {
-        ControladorEquipo cargado = Persistencia.cargar3("controlador.dat");
-
-        // ---------- 2. Si existe, usar el cargado ----------
-        if (cargado != null) {
-            this.ctrlEquipos = cargado;
-        }
-        // ---------- 3. Si NO existe, usar el que viene del constructor ----------
-        else {
-            this.ctrlEquipos = ctrlEquipos;
-        }
+//        ControladorEquipo cargado = Persistencia.cargar3("controlador.dat");
+//
+//        // ---------- 2. Si existe, usar el cargado ----------
+//        if (cargado != null) {
+//            this.ctrlEquipos = cargado;
+//        }
+//        // ---------- 3. Si NO existe, usar el que viene del constructor ----------
+//        else {
+//            this.ctrlEquipos = ctrlEquipos;
+//        }
+        this.ctrlEquipos = ctrlEquipos;
 
         this.programas = Persistencia.cargar3("programasPreventivos.dat");
 
@@ -35,7 +36,7 @@ public class ControladorProgramasPreventivos {
     }
     public void guardar() {
         Persistencia.guardar3("programasPreventivos.dat", programas);
-        Persistencia.guardar3("controlador.dat", ctrlEquipos);
+//        Persistencia.guardar3("controlador.dat", ctrlEquipos);
     }
     public boolean crearProgramaParaEquipo(int idEquipo) {
         Equipos eq = ctrlEquipos.buscarPorId(idEquipo);

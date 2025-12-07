@@ -7,6 +7,7 @@ import com.mycompany.inicioprograma2.controlador.ControladorOrdenPreventiva;
 import com.mycompany.inicioprograma2.controlador.ControladorProgramasPreventivos;
 import com.mycompany.inicioprograma2.controlador.ControladorTarea;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
+import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.ordenes.VentanaPrincipalOrdenesPreventivas;
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.programas.VentanaPrincipalProgramas;
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.tareas.VentanaPrincipalTareas;
 
@@ -35,18 +36,19 @@ public class VentanaPrincipalMantePreventivo extends JFrame {
 
         btnFases.addActionListener(e -> {
             new VentanaPrincipalProgramas(ctrlEquipos, ctrlTareas, ctlPP,prin).setVisible(true);
-        });
+        }); //Opcion A
+
         btnTareas.addActionListener(e -> {
             new VentanaPrincipalTareas(ctrlTareas,prin).setVisible(true);
-        });
-//        btnOrdenes.addActionListener(e -> {
-//            new VentanaPrincipalOrdenes().setVisible(true);
-//            this.dispose();   //Opcion C
-//        });
+        }); //Opcion B
+
+        btnOrdenes.addActionListener(e -> {
+            new VentanaPrincipalOrdenesPreventivas(ctlOP, ctlPP, ctrlEquipos, ctlFallas).setVisible(true);
+        }); //Opcion C
+
         btnSalir.addActionListener(e -> {
-            
             this.dispose();  
             prin.setVisible(true);
-        });
+        }); //Opcion D
     }
 }

@@ -1,10 +1,13 @@
 package com.mycompany.inicioprograma2.controlador;
 
+import com.mycompany.inicioprograma2.modelo.Equipos;
 import com.mycompany.inicioprograma2.modelo.Persistencia;
 import com.mycompany.inicioprograma2.modelo.mantenimiento.preventivo.tareas.Tarea;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ControladorTarea {
     private final ArrayList<Tarea> tareas;
@@ -23,13 +26,35 @@ public class ControladorTarea {
         }
         return null;
     }
+
     public void guardar() {
         Persistencia.guardar("tareas.dat", tareas);
     }
+
+    //Impide que hayan "huecos" en los IDs
+    private int obtenerIdLibre() {
+        int id = 1;
+
+        // crear un set de IDs usados
+        Set<Integer> usados = new HashSet<>();
+        for (Tarea t : tareas) {
+            usados.add(t.getId());
+        }
+
+        // seguir aumentando mientras el ID exista
+        while (usados.contains(id)) {
+            id++;
+        }
+
+        return id;
+    }
+
     public boolean agregarTarea(String descripcion) {
         if (descripcion == null || descripcion.isBlank()) return false;
 
-        Tarea nueva = new Tarea(descripcion);
+        int idAsignado = obtenerIdLibre();
+
+        Tarea nueva = new Tarea(idAsignado, descripcion);
         tareas.add(nueva);
 
         return true;

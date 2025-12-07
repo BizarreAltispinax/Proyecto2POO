@@ -65,12 +65,15 @@ public class VentanaConsultarEquipo extends JFrame {
                     return;
                 }
                 int id = Integer.parseInt(txtId.getText().trim());
-                // Llamamos al controlador
-                area.append(controlador.ConsultarEquipo(id));
 
+                //Limpiar la pantalla antes de la consulta
+                area.setText("");
 
+                // Mostrar resultado
+                area.setText(controlador.ConsultarEquipo(id));
 
                 txtId.setText("");
+
             } catch (NumberFormatException w) {
                 JOptionPane.showMessageDialog(this, "Error en los datos ingresados.");
             }

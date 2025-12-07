@@ -96,6 +96,48 @@ public class Fase implements Serializable {
         this.horasEstimadas = horasEstimadas;
     }
 
+    public static String formatearFase(int numero, Fase fase) {
+        int medidor = fase.getMedidorFrecuencia();
+        int ciclos = fase.getCantidadCiclos();
+        String tipo = fase.getTipoFrecuencia().toString().toLowerCase();
+
+        //Convertir pluralidad
+        String unidad;
+        switch (tipo) {
+            case "año": unidad = (medidor == 1) ? "año" : "años"; break;
+            case "mes": unidad = (medidor == 1) ? "mes" : "meses"; break;
+            case "semana": unidad = (medidor == 1) ? "semana" : "semanas"; break;
+            case "dia": unidad = (medidor == 1) ? "día" : "días"; break;
+            default: unidad = tipo;
+        }
+
+        //Si el medidor es cero, se hace un formato especial
+        if (ciclos == 0) {
+            if (medidor > 1) {
+                return "- Fase " + numero +
+                        ": se hace cada " + medidor + " " + unidad +
+                        " durante el tiempo que esté funcionando el equipo";
+            } else {
+                return "- Fase " + numero +
+                        ": se hace cada " + unidad +
+                        " durante el tiempo que esté funcionando el equipo";
+            }
+        }
+
+        //Pluralizar "vez"
+        String palabraCiclos = (ciclos == 1) ? "vez" : "veces";
+
+        if (medidor > 1) {
+            return "- Fase " + numero +
+                    ": se hace cada " + medidor + " " + unidad +
+                    ", se repite " + ciclos + " " + palabraCiclos;
+        } else {
+            return "- Fase " + numero +
+                    ": se hace cada " + unidad +
+                    ", se repite " + ciclos + " " + palabraCiclos;
+        }
+    }
+
     @Override
     public String toString() {
         return "tipoFrecuencia: " + tipoFrecuencia + "\n" +

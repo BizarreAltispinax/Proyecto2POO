@@ -24,7 +24,7 @@ public class VentanaPrincipalProgramas extends JFrame {
     private final ControladorTarea ctrlTareas;
 
     private JComboBox<Equipos> comboEquipos;
-    private JButton btnCrearFase, btnAsignar, btnConsultar , btnSalir;
+    private JButton btnCrearFase, btnAsignar, btnModificar, btnConsultar, btnSalir;
 
     public VentanaPrincipalProgramas(ControladorEquipo ctrlEquipos, ControladorTarea ctrlTareas, ControladorProgramasPreventivos ctrlProgramas,InicioPrograma2 prin) {
         this.ctrlEquipos = ctrlEquipos;
@@ -32,7 +32,7 @@ public class VentanaPrincipalProgramas extends JFrame {
         this.ctrlProgramas = ctrlProgramas;
 
         setTitle("Programas de Mantenimiento Preventivo");
-        setSize(450, 350);
+        setSize(850, 350);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(6, 1, 10, 10));
@@ -49,23 +49,27 @@ public class VentanaPrincipalProgramas extends JFrame {
         JButton btnCrearPrograma = new JButton("Crear o Activar Programa del Equipo");
         btnCrearFase = new JButton("Crear Fase");
         btnAsignar = new JButton("Asignar Tareas a Fase");
-        btnConsultar = new JButton("Consultar o Modificar Fases");
+        btnModificar = new JButton("Modificar Fases");
+        btnConsultar = new JButton("Ver Programa");
         btnSalir = new JButton("Salir");
         
         btnCrearFase.setEnabled(false);
         btnAsignar.setEnabled(false);
+        btnModificar.setEnabled(false);
         btnConsultar.setEnabled(false);
         btnSalir.setEnabled(true);
         add(btnCrearPrograma);
         add(btnCrearFase);
         add(btnAsignar);
+        add(btnModificar);
         add(btnConsultar);
         add(btnSalir);
         //Eventos
         btnCrearPrograma.addActionListener(e -> activarPrograma());
         btnCrearFase.addActionListener(e -> abrirCrearFase());
         btnAsignar.addActionListener(e -> abrirAsignarTareas());
-        btnConsultar.addActionListener(e -> abrirConsultarFases());
+        btnModificar.addActionListener(e -> abrirModificarFases());
+        btnConsultar.addActionListener(e -> abrirCosultarPrograma());
         btnSalir.addActionListener(e -> {
             
             this.dispose();  
@@ -86,6 +90,7 @@ public class VentanaPrincipalProgramas extends JFrame {
         // Habilitar botones
         btnCrearFase.setEnabled(true);
         btnAsignar.setEnabled(true);
+        btnModificar.setEnabled(true);
         btnConsultar.setEnabled(true);
 
         JOptionPane.showMessageDialog(this,
@@ -102,8 +107,13 @@ public class VentanaPrincipalProgramas extends JFrame {
         new VentanaAsignarTareasFase(equipo.getId(), ctrlProgramas, ctrlTareas, null).setVisible(true);
     }
 
-    private void abrirConsultarFases() {
+    private void abrirModificarFases() {
         Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
         new VentanaListaFases(equipo.getId(), ctrlProgramas).setVisible(true);
+    }
+
+    private void abrirCosultarPrograma() {
+        Equipos equipo = (Equipos) comboEquipos.getSelectedItem();
+        new VentanaConsultaPrograma(equipo.getId(), ctrlProgramas).setVisible(true);
     }
 }
