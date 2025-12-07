@@ -14,12 +14,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaPrincipalMantePreventivo extends JFrame {
-    public VentanaPrincipalMantePreventivo(ControladorEquipo ctrlEquipos,ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorProgramasPreventivos ctlPP,ControladorTarea ctrlTareas,InicioPrograma2 prin) {
+    public VentanaPrincipalMantePreventivo(ControladorEquipo ctrlEquipos, ControladorFalla ctlFallas, ControladorMatenimientoPreventivo ctlMP, ControladorOrdenPreventiva ctlOP, ControladorProgramasPreventivos ctlPP, ControladorTarea ctrlTareas, InicioPrograma2 prin) {
         setTitle("Programa de Mantenimiento Preventivo");
         setSize(450, 250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(2, 2));
 
         JButton btnFases = new JButton("Programas");
         add(btnFases);

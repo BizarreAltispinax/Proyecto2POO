@@ -4,11 +4,10 @@
 
 package com.mycompany.inicioprograma2.vista;
 import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
-import com.mycompany.inicioprograma2.vista.equipos.ConultaArbol;
+import com.mycompany.inicioprograma2.vista.equipos.ConsultaArbol;
 import com.mycompany.inicioprograma2.vista.equipos.GraficoEstado;
 import com.mycompany.inicioprograma2.vista.equipos.GraficoTipos;
 import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalMantenimiento;
-import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.*;
 import com.mycompany.inicioprograma2.controlador.*;
 import javax.swing.*;
 import java.awt.*;
@@ -18,12 +17,12 @@ import java.awt.*;
  */
 public class InicioPrograma2 extends JFrame {
 
-    public InicioPrograma2(ControladorEquipo ctlEquipos,ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
+    public InicioPrograma2(ControladorEquipo ctlEquipos, ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
         setTitle("Menú Principal");
-        setSize(700, 200);
+        setSize(700, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(2, 1));
+        setLayout(new GridLayout(4, 2));
 
         JButton btnEquipos = new JButton("Equipos");
         add(btnEquipos);
@@ -36,6 +35,9 @@ public class InicioPrograma2 extends JFrame {
         
         JButton btnConsultarArbol = new JButton("Consultar en estilo Arbol");
         add(btnConsultarArbol);
+
+        JButton btnSalir = new JButton("Salir");
+        add(btnSalir);
         
         JButton btnGraficos1 = new JButton("Graficos1");
         add(btnGraficos1);
@@ -67,9 +69,11 @@ public class InicioPrograma2 extends JFrame {
         });
         
         btnConsultarArbol.addActionListener(e -> {
-            new ConultaArbol(ctlEquipos,this).setVisible(true);
-            this.setVisible(false);  //Opcion C
+            new ConsultaArbol(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion D
         });
+
+        btnSalir.addActionListener(e -> dispose());
     }
 
     public static void main(String[] args) {

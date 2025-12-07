@@ -7,6 +7,7 @@ import com.mycompany.inicioprograma2.controlador.ControladorOrdenPreventiva;
 import com.mycompany.inicioprograma2.controlador.ControladorProgramasPreventivos;
 import com.mycompany.inicioprograma2.controlador.ControladorTarea;
 import com.mycompany.inicioprograma2.vista.InicioPrograma2;
+import com.mycompany.inicioprograma2.vista.mantenimiento.correctivo.VentanaPrincipalManteCorrectivo;
 import com.mycompany.inicioprograma2.vista.mantenimiento.preventivo.VentanaPrincipalMantePreventivo;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class VentanaPrincipalMantenimiento extends JFrame {
         setSize(350, 200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(2, 1));
+        setLayout(new GridLayout(3, 1));
 
         JButton btnPreventivo = new JButton("Programa de Mantenimiento Preventivo");
         add(btnPreventivo);
@@ -30,13 +31,13 @@ public class VentanaPrincipalMantenimiento extends JFrame {
         add(btnSalir);
         
         btnPreventivo.addActionListener(e -> {
-            new VentanaPrincipalMantePreventivo(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlPP,ctlTarea,prin).setVisible(true);
+            new VentanaPrincipalMantePreventivo(ctlEquipos, ctlFallas, ctlMP, ctlOP, ctlPP, ctlTarea, prin).setVisible(true);
             this.dispose();   //Opcion A
         });
-//        btnCorrectivo.addActionListener(e -> {
-//            new VentanaPrincipalManteCorrectivo().setVisible(true);
-//            this.dispose();   //Opcion B
-//        });
+        btnCorrectivo.addActionListener(e -> {
+            new VentanaPrincipalManteCorrectivo(ctlEquipos, ctlFallas, ctlMP, ctlOP, ctlPP, ctlTarea, prin).setVisible(true);
+            this.dispose();   //Opcion B
+        });
         btnSalir.addActionListener(e -> {
             
             this.dispose();   //Opcion A

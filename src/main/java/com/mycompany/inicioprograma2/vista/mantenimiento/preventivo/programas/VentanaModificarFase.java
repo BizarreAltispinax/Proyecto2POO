@@ -47,6 +47,9 @@ public class VentanaModificarFase extends JFrame {
 
         JButton btnGuardar = new JButton("Guardar Cambios");
         JButton btnCerrar = new JButton("Cerrar");
+        add(btnGuardar);
+        add(btnCerrar);
+
 
         btnCerrar.addActionListener(e -> dispose());
 
