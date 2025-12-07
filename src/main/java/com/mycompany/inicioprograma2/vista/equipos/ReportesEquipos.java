@@ -40,7 +40,7 @@ public class ReportesEquipos extends JFrame {
         btnEquipsSin.addActionListener(e -> {
             try{
                 int id = Integer.parseInt(txtId.getText());
-                controlador.ReporteEquipoSin(id);
+                controlador.reporteEquipoSin(id);
             }catch (NumberFormatException w){
                 JOptionPane.showMessageDialog(this, "Error en los datos ingresados.");
             }
@@ -48,13 +48,13 @@ public class ReportesEquipos extends JFrame {
         btnEquipsCon.addActionListener(e -> {
             try{
                 int id = Integer.parseInt(txtId.getText());
-                controlador.ReporteEquipoCon(id);
+                controlador.reporteEquipoCon(id);
             }catch (NumberFormatException w){
                 JOptionPane.showMessageDialog(this, "Error en los datos ingresados.");
             }
         });
         btnTodos.addActionListener(e -> { 
-            controlador.ReporteEquiposTodos();});
+            controlador.reporteEquiposTodos();});
         
     }
 }

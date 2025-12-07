@@ -12,7 +12,7 @@ public class ControladorOrdenCorrectiva {
     private final ArrayList<OrdenTrabajoCorrectivo> ordenes;
 
     public ControladorOrdenCorrectiva() {
-        ordenes = Persistencia.cargar("ordenesCorrectivas.dat");
+        ordenes = Persistencia.cargar("data/ordenesCorrectivas.dat");
     }
 
     public List<OrdenTrabajoCorrectivo> getOrdenes() {
@@ -20,7 +20,7 @@ public class ControladorOrdenCorrectiva {
     }
 
     public void guardar() {
-        Persistencia.guardar("ordenesCorrectivas.dat", ordenes);
+        Persistencia.guardar("data/ordenesCorrectivas.dat", ordenes);
     }
 
     public boolean crearOrden(int idEquipo, String descripcion, String prioridad) {

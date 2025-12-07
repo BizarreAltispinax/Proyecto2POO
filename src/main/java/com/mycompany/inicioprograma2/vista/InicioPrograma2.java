@@ -3,8 +3,8 @@
  */
 
 package com.mycompany.inicioprograma2.vista;
-import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
 import com.mycompany.inicioprograma2.vista.equipos.ConsultaArbol;
+import com.mycompany.inicioprograma2.vista.equipos.VentanaPrincipalEquipos;
 import com.mycompany.inicioprograma2.vista.equipos.GraficoEstado;
 import com.mycompany.inicioprograma2.vista.equipos.GraficoTipos;
 import com.mycompany.inicioprograma2.vista.mantenimiento.VentanaPrincipalMantenimiento;
@@ -16,7 +16,6 @@ import java.awt.*;
  * @author Usuario
  */
 public class InicioPrograma2 extends JFrame {
-
     public InicioPrograma2(ControladorEquipo ctlEquipos, ControladorFalla ctlFallas,ControladorMatenimientoPreventivo ctlMP,ControladorOrdenPreventiva ctlOP,ControladorOrdenCorrectiva ctlOC,ControladorProgramasPreventivos ctlPP,ControladorTarea ctlTarea) {
         setTitle("Menú Principal");
         setSize(700, 400);
@@ -24,6 +23,9 @@ public class InicioPrograma2 extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(4, 2));
 
+        /**
+         * Implementacion de los botones
+         */
         JButton btnEquipos = new JButton("Equipos");
         add(btnEquipos);
         
@@ -36,46 +38,65 @@ public class InicioPrograma2 extends JFrame {
         JButton btnConsultarArbol = new JButton("Consulta Estilo Árbol");
         add(btnConsultarArbol);
         
-        JButton btnGraficos1 = new JButton("Gráficos 1");
+        JButton btnGraficos1 = new JButton("Gráfico por Tipo de Equipo");
         add(btnGraficos1);
         
-        JButton btnGraficos2 = new JButton("Gráficos 2");
+        JButton btnGraficos2 = new JButton("Gráfico por Estado de Equipo");
         add(btnGraficos2);
 
         JButton btnSalir = new JButton("Salir");
         add(btnSalir);
 
+        /**
+         * Funcionalidades de los botones
+         */
+        //Boton de equipos
         btnEquipos.addActionListener(e -> {
             new VentanaPrincipalEquipos(ctlEquipos,this).setVisible(true);
             this.setVisible(false);//Opcion A
         });
+
+        //Boton de reportes
         btnReportes.addActionListener(e -> {
             new Reportes(ctlEquipos,this).setVisible(true);
             this.setVisible(false);  //Opcion B
         });
+
+        //Boton de mantenimiento
         btnMantePreventivo.addActionListener(e -> {
             new VentanaPrincipalMantenimiento(ctlEquipos,ctlFallas,ctlMP,ctlOP,ctlOC,ctlPP,ctlTarea,this).setVisible(true);
             this.setVisible(false);  //Opcion C
         });
-        
+
+        //Boton para ver grafico por tipos
         btnGraficos1.addActionListener(e -> {
             new GraficoTipos(ctlEquipos,this).setVisible(true);
-            this.setVisible(false);  //Opcion C
-        });
-        
-        btnGraficos2.addActionListener(e -> {
-            new GraficoEstado(ctlEquipos,this).setVisible(true);
-            this.setVisible(false);  //Opcion C
-        });
-        
-        btnConsultarArbol.addActionListener(e -> {
-            new ConsultaArbol(ctlEquipos,this).setVisible(true);
             this.setVisible(false);  //Opcion D
         });
 
+        //Boton para ver el grafico de estado
+        btnGraficos2.addActionListener(e -> {
+            new GraficoEstado(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion E
+        });
+
+        //Boton de consulta tipo arbol
+        btnConsultarArbol.addActionListener(e -> {
+            new ConsultaArbol(ctlEquipos,this).setVisible(true);
+            this.setVisible(false);  //Opcion F
+        });
+
+        //Boton para cerrar el programa
         btnSalir.addActionListener(e -> dispose());
     }
 
+    /**
+     *
+     * @param args
+     * Metodo Main
+     * Ejecuta los controladores y guarda los datos en archivos .dat
+     *
+     */
     public static void main(String[] args) {
         ControladorEquipo ctlEquipos = new ControladorEquipo();
         ControladorFalla ctlPersonas = new ControladorFalla();

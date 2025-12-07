@@ -10,7 +10,7 @@ public class ControladorFalla {
     private final ArrayList<Falla> fallas;
 
     public ControladorFalla() {
-        fallas = Persistencia.cargar("fallas.dat");
+        fallas = Persistencia.cargar("data/fallas.dat");
     }
 
     public ArrayList<Falla> getFallasEquipo(int idEquipo) {
@@ -30,7 +30,7 @@ public class ControladorFalla {
     }
 
     public void guardar() {
-        Persistencia.guardar("fallas.dat", fallas);
+        Persistencia.guardar("data/fallas.dat", fallas);
     }
 
     public boolean agregarFalla(int idEquipo, int idFalla, String descripcion) {

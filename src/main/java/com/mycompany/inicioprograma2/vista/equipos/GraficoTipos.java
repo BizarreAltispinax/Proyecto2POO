@@ -25,7 +25,7 @@ public class GraficoTipos extends JFrame{
 
         // 2. Crear dataset
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (Map.Entry<String, Integer> entry : controlador.ConteoTipos().entrySet()) {
+        for (Map.Entry<String, Integer> entry : controlador.conteoTipos().entrySet()) {
             dataset.addValue(entry.getValue(), "Cantidad", entry.getKey());
         }
 

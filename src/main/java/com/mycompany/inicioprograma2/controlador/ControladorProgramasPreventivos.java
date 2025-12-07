@@ -19,14 +19,14 @@ public class ControladorProgramasPreventivos {
         this.ctrlEquipos = ctrlEquipos;
         
 
-        this.programas = Persistencia.cargar3("programasPreventivos.dat");
+        this.programas = Persistencia.cargar3("data/programasPreventivos.dat");
 
         if (this.programas == null) {
             this.programas = new HashMap<>();
         }
     }
     public void guardar() {
-        Persistencia.guardar3("programasPreventivos.dat", programas);
+        Persistencia.guardar3("data/programasPreventivos.dat", programas);
     }
     public boolean crearProgramaParaEquipo(int idEquipo) {
         Equipos eq = ctrlEquipos.buscarPorId(idEquipo);

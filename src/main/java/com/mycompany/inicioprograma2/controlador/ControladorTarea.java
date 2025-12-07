@@ -13,7 +13,7 @@ public class ControladorTarea {
     private final ArrayList<Tarea> tareas;
 
     public ControladorTarea() {
-        tareas = Persistencia.cargar("tareas.dat");
+        tareas = Persistencia.cargar("data/tareas.dat");
     }
 
     public ArrayList<Tarea> getTareas() {
@@ -28,7 +28,7 @@ public class ControladorTarea {
     }
 
     public void guardar() {
-        Persistencia.guardar("tareas.dat", tareas);
+        Persistencia.guardar("data/tareas.dat", tareas);
     }
 
     //Impide que hayan "huecos" en los IDs

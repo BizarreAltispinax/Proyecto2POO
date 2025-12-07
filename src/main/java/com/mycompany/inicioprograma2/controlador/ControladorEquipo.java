@@ -32,9 +32,9 @@ public class ControladorEquipo {
     private final ArrayList<Equipos> equipos;
 
     public ControladorEquipo() {
-        equipos = Persistencia.cargar("equipos.dat");
+        equipos = Persistencia.cargar("data/equipos.dat");
  
-        this.rutaArchivo = "datos.txt";
+        this.rutaArchivo = "data/datos.txt";
     }
 
     public ArrayList<Equipos> getEquipos() {
@@ -42,7 +42,7 @@ public class ControladorEquipo {
     }
 
     public void guardar() {
-        Persistencia.guardar("equipos.dat", equipos);
+        Persistencia.guardar("data/equipos.dat", equipos);
     }
 
     public Equipos buscarPorId(int id) {
@@ -98,7 +98,7 @@ public class ControladorEquipo {
 
         return nodo;
     }
-    public Map<String, Integer>ConteoTipos(){
+    public Map<String, Integer>conteoTipos(){
         Map<String, Integer> conteo = new HashMap<>();
         for (Equipos e : equipos) {
             conteo.put(e.getTipo(), conteo.getOrDefault(e.getTipo(), 0) + 1);
@@ -247,7 +247,7 @@ public class ControladorEquipo {
     
     
     
-    public String ConsultarEquipo(int id) {
+    public String consultarEquipo(int id) {
         for (Equipos e : equipos){
             if (e.getId()==id){
                 return e.toString2();
@@ -256,7 +256,7 @@ public class ControladorEquipo {
         return "No se encontro";
     }
     
-    public Equipos EquiposPadreObj(int id){
+    public Equipos equiposPadreObj(int id){
         for (Equipos e :equipos){
             if(e.getId()==id){
                 return e;
@@ -311,42 +311,39 @@ public class ControladorEquipo {
         }
     }
     
-    public void ReporteEquipoSin(int id) {
+    public void reporteEquipoSin(int id) {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             if (e.getId()==id){
-                sb.append(e.toString2()); 
+                sb.append(e.toString2());
             }
         }
-        generarPDF("Reporte_Equipo.pdf", sb.toString());
+        generarPDF("reportes/Reporte_Equipo.pdf", sb.toString());
         
     }
 
-    public void ReporteEquipoCon(int id) {
+    public void reporteEquipoCon(int id) {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             if (e.getId()==id){
-                sb.append(e.toString2()); 
+                sb.append(e.toString2());
                 imprimirRecursivo(e, sb, 0);
-                
-                
-                
             }
         }
-        generarPDF("Reporte_Equipo.pdf", sb.toString());
+        generarPDF("reportes/Reporte_Equipo.pdf", sb.toString());
         
     }
     
-        public void ReporteEquiposTodos() {
+        public void reporteEquiposTodos() {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
-            sb.append(e.toString2()); 
+            sb.append(e.toString2());
             sb.append("\nComponentes de los que esta conformado: ");
             sb.append("\n");
             imprimirRecursivo(e, sb, 0);
             sb.append("\n");
         }
-        generarPDF("Reporte_Equipo.pdf", sb.toString());
+        generarPDF("reportes/Reporte_Equipo.pdf", sb.toString());
         
     }
 
@@ -372,7 +369,7 @@ public class ControladorEquipo {
 
         for (Equipos eq : equipos) {
 
-            if (EquiposPadreObj(eq.getEquipoPadre()) != null && EquiposPadreObj(eq.getEquipoPadre()).equals(padre)) {
+            if (equiposPadreObj(eq.getEquipoPadre()) != null && equiposPadreObj(eq.getEquipoPadre()).equals(padre)) {
 
                 // Sangría según nivel
                 sb.append("   ".repeat(nivel));

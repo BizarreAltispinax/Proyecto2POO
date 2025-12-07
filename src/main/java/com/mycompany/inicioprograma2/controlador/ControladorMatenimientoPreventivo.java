@@ -12,7 +12,7 @@ public class ControladorMatenimientoPreventivo {
     private ProgramaMantenimientoPreventivo programa;
 
     public ControladorMatenimientoPreventivo() {
-        this.programa = Persistencia.cargar2("mantenimientoPreventivo.dat");
+        this.programa = Persistencia.cargar2("data/mantenimientoPreventivo.dat");
 
         if (this.programa == null) {
             this.programa = new ProgramaMantenimientoPreventivo();
@@ -23,7 +23,7 @@ public class ControladorMatenimientoPreventivo {
         return programa.getFases();
     }
     public void guardar() {
-        Persistencia.guardar2("mantenimientoPreventivo.dat", programa);
+        Persistencia.guardar2("data/mantenimientoPreventivo.dat", programa);
     }
 
     public boolean crearFase(TipoFrecuencia tipoFrecuencia, int medidorFrecuencia, int cantidadCiclos, String partes, String herramientas, String personal, float horasEstimadas) {

@@ -20,8 +20,7 @@ import com.mycompany.inicioprograma2.vista.InicioPrograma2;
 public class ConsultaArbol extends JFrame{
     public ConsultaArbol(ControladorEquipo controlador, InicioPrograma2 prin){
 
-
-                // Campo y botón de búsqueda
+        // Campo y botón de búsqueda
         JTextField txtBusqueda = new JTextField(10);
         JButton btnBuscar = new JButton("Buscar equipo");
         JButton btnSalir = new JButton("Salir");
@@ -30,7 +29,6 @@ public class ConsultaArbol extends JFrame{
         panelBusqueda.add(txtBusqueda);
         panelBusqueda.add(btnBuscar);
         panelBusqueda.add(btnSalir);
-        
 
         // Árbol inicial (vacío)
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Seleccione un equipo");

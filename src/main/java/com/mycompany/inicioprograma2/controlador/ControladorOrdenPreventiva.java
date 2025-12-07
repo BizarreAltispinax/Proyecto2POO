@@ -13,7 +13,7 @@ public class ControladorOrdenPreventiva {
     private final ArrayList<OrdenTrabajoPreventivo> ordenes;
 
     public ControladorOrdenPreventiva() {
-        ordenes = Persistencia.cargar("ordenesPreventivas.dat");
+        ordenes = Persistencia.cargar("data/ordenesPreventivas.dat");
         actualizarContador();
     }
 
@@ -37,7 +37,7 @@ public class ControladorOrdenPreventiva {
         return null;
     }
     public void guardar() {
-        Persistencia.guardar("ordenesPreventivas.dat", ordenes);
+        Persistencia.guardar("data/ordenesPreventivas.dat", ordenes);
     }
 
     public boolean crearOrden(int equipoId, int faseIndex, LocalDate fechaProgramada) {

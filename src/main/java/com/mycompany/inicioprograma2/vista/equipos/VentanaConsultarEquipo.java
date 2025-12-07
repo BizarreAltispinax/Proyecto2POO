@@ -70,7 +70,7 @@ public class VentanaConsultarEquipo extends JFrame {
                 area.setText("");
 
                 // Mostrar resultado
-                area.setText(controlador.ConsultarEquipo(id));
+                area.setText(controlador.consultarEquipo(id));
 
                 txtId.setText("");
 
