@@ -250,7 +250,7 @@ public class ControladorEquipo {
     public String ConsultarEquipo(int id) {
         for (Equipos e : equipos){
             if (e.getId()==id){
-                return e.toString();
+                return e.toString2();
             }
         }
         return "No se encontro";
@@ -315,7 +315,7 @@ public class ControladorEquipo {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             if (e.getId()==id){
-                sb.append(e.toString()); 
+                sb.append(e.toString2()); 
             }
         }
         generarPDF("Reporte_Equipo.pdf", sb.toString());
@@ -326,7 +326,7 @@ public class ControladorEquipo {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
             if (e.getId()==id){
-                sb.append(e.toString()); 
+                sb.append(e.toString2()); 
                 imprimirRecursivo(e, sb, 0);
                 
                 
@@ -340,7 +340,7 @@ public class ControladorEquipo {
         public void ReporteEquiposTodos() {
         StringBuilder sb = new StringBuilder();
         for (Equipos e : equipos){
-            sb.append(e.toString()); 
+            sb.append(e.toString2()); 
             sb.append("\nComponentes de los que esta conformado: ");
             sb.append("\n");
             imprimirRecursivo(e, sb, 0);

@@ -176,24 +176,24 @@ public class Equipos implements Serializable {
         this.equipoPadre = equipoPadre;
     }
 
-//    @Override
-//    public String toString() {
-//    return "ID: " + id + "\n" +
-//           "Descripción: " + descripcion + "\n" +
-//           "Tipo: " + tipo + "\n" +
-//           "Ubicación: " + ubicacion + "\n" +
-//           "Fabricante: " + fabricante + "\n" +
-//           "Serie: " + serie + "\n" +
-//           "Fecha de adquisición: " + fechaAdquisicion + "\n" +
-//           "Fecha de puesta en servicio: " + fechaPuestaServicio + "\n" +
-//           "Meses de vida útil: " + mesesVidaUtil + "\n" +
-//           "Estado: " + estado + "\n" +
-//           "Costo inicial: " + costoInicial + "\n" +
-//           "Especificaciones: " + especificaciones + "\n" +
-//           "Garantía: " + garantia + "\n" +
-//           "Equipo padre: " + equipoPadre;
-//
-//    }
+    
+    public String toString2() {
+    return "ID: " + id + "\n" +
+           "Descripción: " + descripcion + "\n" +
+           "Tipo: " + tipo + "\n" +
+           "Ubicación: " + ubicacion + "\n" +
+           "Fabricante: " + fabricante + "\n" +
+           "Serie: " + serie + "\n" +
+           "Fecha de adquisición: " + fechaAdquisicion + "\n" +
+           "Fecha de puesta en servicio: " + fechaPuestaServicio + "\n" +
+           "Meses de vida útil: " + mesesVidaUtil + "\n" +
+           "Estado: " + estado + "\n" +
+           "Costo inicial: " + costoInicial + "\n" +
+           "Especificaciones: " + especificaciones + "\n" +
+           "Garantía: " + garantia + "\n" +
+           "Equipo padre: " + equipoPadre;
+
+    }
 
     @Override
     public String toString() {
