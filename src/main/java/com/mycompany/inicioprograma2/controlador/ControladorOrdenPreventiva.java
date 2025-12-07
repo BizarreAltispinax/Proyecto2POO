@@ -27,7 +27,7 @@ public class ControladorOrdenPreventiva {
         return null;
     }
     public void guardar() {
-        Persistencia.guardar("fallas.dat", ordenes);
+        Persistencia.guardar("ordenes.dat", ordenes);
     }
     public boolean crearOrden(int equipoId, int faseIndex, LocalDate fechaProgramada) {
         if (equipoId <= 0) return false;
